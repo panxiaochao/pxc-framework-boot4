@@ -53,10 +53,10 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- 2025.0.X 版本支持 3.5.x -->
-        <spring-boot.version>3.5.14</spring-boot.version>
+        <!-- 2025.1.X 版本支持 4.0.x -->
+        <spring-boot.version>4.0.6</spring-boot.version>
 <!--        <spring-data-redis.version>3.5.11</spring-data-redis.version>-->
-<!--        <spring-cloud.version>2025.0.2</spring-cloud.version>-->
+        <spring-cloud.version>2025.1.1</spring-cloud.version>
 <!--        <spring-cloud-openfeign.version>4.3.2</spring-cloud-openfeign.version>-->
 <!--        <spring-cloud-gateway.version>4.3.4</spring-cloud-gateway.version>-->
 <!--        <spring.version>6.2.18</spring.version>-->
