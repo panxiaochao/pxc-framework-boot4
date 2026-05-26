@@ -46,6 +46,11 @@
         </repository>
     </distributionManagement>
 
+    <modules>
+        <module>pxc-framework-boot4-bom</module>
+        <module>pxc-framework-boot4-common</module>
+    </modules>
+
     <properties>
         <revision>4.0.0-SNAPSHOT</revision>
         <java.version>21</java.version>
@@ -55,51 +60,51 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- 2025.1.X 版本支持 4.0.x -->
         <spring-boot.version>4.0.6</spring-boot.version>
-<!--        <spring-data-redis.version>3.5.11</spring-data-redis.version>-->
+        <!--        <spring-data-redis.version>3.5.11</spring-data-redis.version>-->
         <spring-cloud.version>2025.1.1</spring-cloud.version>
-<!--        <spring-cloud-openfeign.version>4.3.2</spring-cloud-openfeign.version>-->
-<!--        <spring-cloud-gateway.version>4.3.4</spring-cloud-gateway.version>-->
-<!--        <spring.version>6.2.18</spring.version>-->
-<!--        <mybatis-plus.version>3.5.16</mybatis-plus.version>-->
-<!--        <mybatis-plus-join-boot-starter.version>1.5.7</mybatis-plus-join-boot-starter.version>-->
-<!--        <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>-->
-<!--        <oshi-core.version>7.1.0</oshi-core.version>-->
-<!--        <ip2region.version>3.3.7</ip2region.version>-->
-<!--        <commons-io.version>2.22.0</commons-io.version>-->
-<!--        <commons-lang3.version>3.20.0</commons-lang3.version>-->
-<!--        <commons-text.version>1.15.0</commons-text.version>-->
-<!--        <commons-collections4.version>4.5.0</commons-collections4.version>-->
-<!--        <commons-fileupload.version>1.6.0</commons-fileupload.version>-->
-<!--        <commons-pool2.version>2.13.1</commons-pool2.version>-->
-<!--        <hutool.version>5.8.44</hutool.version>-->
-<!--        <swagger-annotations-jakarta.version>2.2.49</swagger-annotations-jakarta.version>-->
-<!--        <javase.version>3.5.4</javase.version>-->
-<!--        <fastjson.version>1.2.83</fastjson.version>-->
-<!--        <fastjson2.version>2.0.62</fastjson2.version>-->
-<!--        <jackson.version>2.21.3</jackson.version>-->
-<!--        <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>-->
-<!--        <okhttp.version>4.12.0</okhttp.version>-->
-<!--        <aspectjweaver.version>1.9.25</aspectjweaver.version>-->
-<!--        <caffeine.version>3.2.4</caffeine.version>-->
+        <!--        <spring-cloud-openfeign.version>4.3.2</spring-cloud-openfeign.version>-->
+        <!--        <spring-cloud-gateway.version>4.3.4</spring-cloud-gateway.version>-->
+        <spring.version>7.0.7</spring.version>
+        <!--        <mybatis-plus.version>3.5.16</mybatis-plus.version>-->
+        <!--        <mybatis-plus-join-boot-starter.version>1.5.7</mybatis-plus-join-boot-starter.version>-->
+        <!--        <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>-->
+        <!--        <oshi-core.version>7.1.0</oshi-core.version>-->
+        <!--        <ip2region.version>3.3.7</ip2region.version>-->
+        <!--        <commons-io.version>2.22.0</commons-io.version>-->
+        <!--        <commons-lang3.version>3.20.0</commons-lang3.version>-->
+        <!--        <commons-text.version>1.15.0</commons-text.version>-->
+        <!--        <commons-collections4.version>4.5.0</commons-collections4.version>-->
+        <!--        <commons-fileupload.version>1.6.0</commons-fileupload.version>-->
+        <!--        <commons-pool2.version>2.13.1</commons-pool2.version>-->
+        <!--        <hutool.version>5.8.44</hutool.version>-->
+        <swagger-annotations-jakarta.version>2.2.50</swagger-annotations-jakarta.version>
+        <!--        <javase.version>3.5.4</javase.version>-->
+        <!--        <fastjson.version>1.2.83</fastjson.version>-->
+        <!--        <fastjson2.version>2.0.62</fastjson2.version>-->
+        <!--        <jackson.version>2.21.3</jackson.version>-->
+        <!--        <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>-->
+        <!--        <okhttp.version>4.12.0</okhttp.version>-->
+        <!--        <aspectjweaver.version>1.9.25</aspectjweaver.version>-->
+        <!--        <caffeine.version>3.2.4</caffeine.version>-->
         <lombok.version>1.18.46</lombok.version>
-<!--        <mysql-connector-j.version>9.7.0</mysql-connector-j.version>-->
-<!--        <freemarker.version>2.3.34</freemarker.version>-->
-<!--        <redisson.version>4.3.1</redisson.version>-->
-<!--        <redisson-spring-boot-starter.version>4.3.1</redisson-spring-boot-starter.version>-->
-<!--        <jakarta.mail-api.version>2.1.5</jakarta.mail-api.version>-->
-<!--        <hikariCP.version>7.0.2</hikariCP.version>-->
-<!--        <slf4j-api.version>2.0.17</slf4j-api.version>-->
-<!--        <dm.version>8.1.3.140</dm.version>-->
-<!--        <tomcat.version>11.0.22</tomcat.version>-->
-<!--        <jsoup.version>1.22.2</jsoup.version>-->
-<!--        <httpclient5.version>5.6.1</httpclient5.version>-->
-<!--        <emoji-java.version>5.1.1</emoji-java.version>-->
-<!--        <weixin-java.version>4.8.3.B</weixin-java.version>-->
-<!--        <dynamic-datasource-spring-boot3.version>4.5.0</dynamic-datasource-spring-boot3.version>-->
-<!--        <jasypt-spring-boot-starter.version>4.0.4</jasypt-spring-boot-starter.version>-->
-<!--        <logback.version>1.5.32</logback.version>-->
-<!--        <java-diff-utils.version>4.16</java-diff-utils.version>-->
-<!--        <fastexcel.version>1.3.0</fastexcel.version>-->
+        <!--        <mysql-connector-j.version>9.7.0</mysql-connector-j.version>-->
+        <!--        <freemarker.version>2.3.34</freemarker.version>-->
+        <!--        <redisson.version>4.3.1</redisson.version>-->
+        <!--        <redisson-spring-boot-starter.version>4.3.1</redisson-spring-boot-starter.version>-->
+        <!--        <jakarta.mail-api.version>2.1.5</jakarta.mail-api.version>-->
+        <!--        <hikariCP.version>7.0.2</hikariCP.version>-->
+        <!--        <slf4j-api.version>2.0.17</slf4j-api.version>-->
+        <!--        <dm.version>8.1.3.140</dm.version>-->
+        <!--        <tomcat.version>11.0.22</tomcat.version>-->
+        <!--        <jsoup.version>1.22.2</jsoup.version>-->
+        <!--        <httpclient5.version>5.6.1</httpclient5.version>-->
+        <!--        <emoji-java.version>5.1.1</emoji-java.version>-->
+        <!--        <weixin-java.version>4.8.3.B</weixin-java.version>-->
+        <!--        <dynamic-datasource-spring-boot3.version>4.5.0</dynamic-datasource-spring-boot3.version>-->
+        <!--        <jasypt-spring-boot-starter.version>4.0.4</jasypt-spring-boot-starter.version>-->
+        <!--        <logback.version>1.5.32</logback.version>-->
+        <!--        <java-diff-utils.version>4.16</java-diff-utils.version>-->
+        <!--        <fastexcel.version>1.3.0</fastexcel.version>-->
         <!-- 插件版本 -->
         <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
         <maven-compiler-plugin.verison>3.15.0</maven-compiler-plugin.verison>
@@ -113,344 +118,346 @@
 
     <dependencyManagement>
         <dependencies>
-<!--            &lt;!&ndash; pxc framework boot3 依赖管理 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>io.github.panxiaochao</groupId>-->
-<!--                <artifactId>pxc-framework-boot4-bom</artifactId>-->
-<!--                <version>${revision}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
+            <!-- pxc framework boot4 依赖管理 -->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-framework-boot4-bom</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-<!--            &lt;!&ndash; hutool 依赖管理 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>cn.hutool</groupId>-->
-<!--                <artifactId>hutool-bom</artifactId>-->
-<!--                <version>${hutool.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
+            <!--            &lt;!&ndash; hutool 依赖管理 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>cn.hutool</groupId>-->
+            <!--                <artifactId>hutool-bom</artifactId>-->
+            <!--                <version>${hutool.version}</version>-->
+            <!--                <type>pom</type>-->
+            <!--                <scope>import</scope>-->
+            <!--            </dependency>-->
 
-<!--            &lt;!&ndash; mybatis-plus 依赖管理 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>mybatis-plus-bom</artifactId>-->
-<!--                <version>${mybatis-plus.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
+            <!--            &lt;!&ndash; mybatis-plus 依赖管理 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.baomidou</groupId>-->
+            <!--                <artifactId>mybatis-plus-bom</artifactId>-->
+            <!--                <version>${mybatis-plus.version}</version>-->
+            <!--                <type>pom</type>-->
+            <!--                <scope>import</scope>-->
+            <!--            </dependency>-->
 
-<!--            &lt;!&ndash; mybatis-plus-join 依赖管理 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.yulichang</groupId>-->
-<!--                <artifactId>mybatis-plus-join-boot-starter</artifactId>-->
-<!--                <version>${mybatis-plus-join-boot-starter.version}</version>-->
-<!--            </dependency>-->
+            <!--            &lt;!&ndash; mybatis-plus-join 依赖管理 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.yulichang</groupId>-->
+            <!--                <artifactId>mybatis-plus-join-boot-starter</artifactId>-->
+            <!--                <version>${mybatis-plus-join-boot-starter.version}</version>-->
+            <!--            </dependency>-->
 
-<!--            &lt;!&ndash; OkHttp 依赖管理 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.squareup.okhttp3</groupId>-->
-<!--                <artifactId>okhttp-bom</artifactId>-->
-<!--                <version>${okhttp.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
+            <!--            &lt;!&ndash; OkHttp 依赖管理 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.squareup.okhttp3</groupId>-->
+            <!--                <artifactId>okhttp-bom</artifactId>-->
+            <!--                <version>${okhttp.version}</version>-->
+            <!--                <type>pom</type>-->
+            <!--                <scope>import</scope>-->
+            <!--            </dependency>-->
 
-<!--            <dependency>-->
-<!--                <groupId>com.fasterxml.jackson</groupId>-->
-<!--                <artifactId>jackson-bom</artifactId>-->
-<!--                <version>${jackson.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.fasterxml.jackson</groupId>-->
+            <!--                <artifactId>jackson-bom</artifactId>-->
+            <!--                <version>${jackson.version}</version>-->
+            <!--                <type>pom</type>-->
+            <!--                <scope>import</scope>-->
+            <!--            </dependency>-->
 
-<!--            &lt;!&ndash; Other 依赖管理 &ndash;&gt;-->
-<!--            &lt;!&ndash; Spring 依赖管理 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-web</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-configuration-processor</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-test</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-validation</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.data</groupId>-->
-<!--                <artifactId>spring-data-redis</artifactId>-->
-<!--                <version>${spring-data-redis.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-autoconfigure</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework</groupId>-->
-<!--                <artifactId>spring-context-support</artifactId>-->
-<!--                <version>${spring.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework</groupId>-->
-<!--                <artifactId>spring-web</artifactId>-->
-<!--                <version>${spring.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework</groupId>-->
-<!--                <artifactId>spring-core</artifactId>-->
-<!--                <version>${spring.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework</groupId>-->
-<!--                <artifactId>spring-context</artifactId>-->
-<!--                <version>${spring.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; Oshi 依赖管理 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.oshi</groupId>-->
-<!--                <artifactId>oshi-core</artifactId>-->
-<!--                <version>${oshi-core.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; ip2region 依赖管理 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.lionsoul</groupId>-->
-<!--                <artifactId>ip2region</artifactId>-->
-<!--                <version>${ip2region.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>commons-io</groupId>-->
-<!--                <artifactId>commons-io</artifactId>-->
-<!--                <version>${commons-io.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.commons</groupId>-->
-<!--                <artifactId>commons-lang3</artifactId>-->
-<!--                <version>${commons-lang3.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.commons</groupId>-->
-<!--                <artifactId>commons-text</artifactId>-->
-<!--                <version>${commons-text.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.commons</groupId>-->
-<!--                <artifactId>commons-collections4</artifactId>-->
-<!--                <version>${commons-collections4.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>io.swagger.core.v3</groupId>-->
-<!--                <artifactId>swagger-annotations-jakarta</artifactId>-->
-<!--                <version>${swagger-annotations-jakarta.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework</groupId>-->
-<!--                <artifactId>spring-webmvc</artifactId>-->
-<!--                <version>${spring.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-gateway</artifactId>-->
-<!--                <version>${spring-cloud-gateway.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba</groupId>-->
-<!--                <artifactId>transmittable-thread-local</artifactId>-->
-<!--                <version>${transmittable-thread-local.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-openfeign</artifactId>-->
-<!--                <version>${spring-cloud-openfeign.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba</groupId>-->
-<!--                <artifactId>fastjson</artifactId>-->
-<!--                <version>${fastjson.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.fastjson2</groupId>-->
-<!--                <artifactId>fastjson2</artifactId>-->
-<!--                <version>${fastjson2.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework</groupId>-->
-<!--                <artifactId>spring-aop</artifactId>-->
-<!--                <version>${spring.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.aspectj</groupId>-->
-<!--                <artifactId>aspectjweaver</artifactId>-->
-<!--                <version>${aspectjweaver.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.redisson</groupId>-->
-<!--                <artifactId>redisson</artifactId>-->
-<!--                <version>${redisson.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.redisson</groupId>-->
-<!--                <artifactId>redisson-spring-cache</artifactId>-->
-<!--                <version>${redisson.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.redisson</groupId>-->
-<!--                <artifactId>redisson-spring-boot-starter</artifactId>-->
-<!--                <version>${redisson-spring-boot-starter.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-data-redis</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.google.zxing</groupId>-->
-<!--                <artifactId>javase</artifactId>-->
-<!--                <version>${javase.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.mysql</groupId>-->
-<!--                <artifactId>mysql-connector-j</artifactId>-->
-<!--                <version>${mysql-connector-j.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 达梦数据库 Dm &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.dameng</groupId>-->
-<!--                <artifactId>DmJdbcDriver18</artifactId>-->
-<!--                <version>${dm.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.freemarker</groupId>-->
-<!--                <artifactId>freemarker</artifactId>-->
-<!--                <version>${freemarker.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>jakarta.mail</groupId>-->
-<!--                <artifactId>jakarta.mail-api</artifactId>-->
-<!--                <version>${jakarta.mail-api.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.ben-manes.caffeine</groupId>-->
-<!--                <artifactId>caffeine</artifactId>-->
-<!--                <version>${caffeine.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.commons</groupId>-->
-<!--                <artifactId>commons-pool2</artifactId>-->
-<!--                <version>${commons-pool2.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.zaxxer</groupId>-->
-<!--                <artifactId>HikariCP</artifactId>-->
-<!--                <version>${hikariCP.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.slf4j</groupId>-->
-<!--                <artifactId>slf4j-api</artifactId>-->
-<!--                <version>${slf4j-api.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.tomcat.embed</groupId>-->
-<!--                <artifactId>tomcat-embed-core</artifactId>-->
-<!--                <version>${tomcat.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.jsoup</groupId>-->
-<!--                <artifactId>jsoup</artifactId>-->
-<!--                <version>${jsoup.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.httpcomponents.client5</groupId>-->
-<!--                <artifactId>httpclient5</artifactId>-->
-<!--                <version>${httpclient5.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; emoji-java &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.vdurmont</groupId>-->
-<!--                <artifactId>emoji-java</artifactId>-->
-<!--                <version>${emoji-java.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 微信小程序 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.binarywang</groupId>-->
-<!--                <artifactId>weixin-java-miniapp</artifactId>-->
-<!--                <version>${weixin-java.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 微信支付 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.binarywang</groupId>-->
-<!--                <artifactId>weixin-java-pay</artifactId>-->
-<!--                <version>${weixin-java.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 微信公众号 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.binarywang</groupId>-->
-<!--                <artifactId>weixin-java-mp</artifactId>-->
-<!--                <version>${weixin-java.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 企业号/企业微信 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.binarywang</groupId>-->
-<!--                <artifactId>weixin-java-cp</artifactId>-->
-<!--                <version>${weixin-java.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 微信开放平台 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.binarywang</groupId>-->
-<!--                <artifactId>weixin-java-open</artifactId>-->
-<!--                <version>${weixin-java.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 视频号/微信小店 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.binarywang</groupId>-->
-<!--                <artifactId>weixin-java-channel</artifactId>-->
-<!--                <version>${weixin-java.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 动态数据源 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>-->
-<!--                <version>${dynamic-datasource-spring-boot3.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash;配置文件加解密&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.ulisesbocchio</groupId>-->
-<!--                <artifactId>jasypt-spring-boot-starter</artifactId>-->
-<!--                <version>${jasypt-spring-boot-starter.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>jakarta.servlet</groupId>-->
-<!--                <artifactId>jakarta.servlet-api</artifactId>-->
-<!--                <version>${jakarta.servlet-api.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; logback &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>ch.qos.logback</groupId>-->
-<!--                <artifactId>logback-classic</artifactId>-->
-<!--                <version>${logback.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 文本差异对比库 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>io.github.java-diff-utils</groupId>-->
-<!--                <artifactId>java-diff-utils</artifactId>-->
-<!--                <version>${java-diff-utils.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; fastexcel 导入导出依赖 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>cn.idev.excel</groupId>-->
-<!--                <artifactId>fastexcel</artifactId>-->
-<!--                <version>${fastexcel.version}</version>-->
-<!--            </dependency>-->
+            <!-- Spring 依赖管理 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>${spring-data-redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!--            &lt;!&ndash; Oshi 依赖管理 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.oshi</groupId>-->
+            <!--                <artifactId>oshi-core</artifactId>-->
+            <!--                <version>${oshi-core.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; ip2region 依赖管理 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.lionsoul</groupId>-->
+            <!--                <artifactId>ip2region</artifactId>-->
+            <!--                <version>${ip2region.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>commons-io</groupId>-->
+            <!--                <artifactId>commons-io</artifactId>-->
+            <!--                <version>${commons-io.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.commons</groupId>-->
+            <!--                <artifactId>commons-lang3</artifactId>-->
+            <!--                <version>${commons-lang3.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.commons</groupId>-->
+            <!--                <artifactId>commons-text</artifactId>-->
+            <!--                <version>${commons-text.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.commons</groupId>-->
+            <!--                <artifactId>commons-collections4</artifactId>-->
+            <!--                <version>${commons-collections4.version}</version>-->
+            <!--            </dependency>-->
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations-jakarta</artifactId>
+                <version>${swagger-annotations-jakarta.version}</version>
+            </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.cloud</groupId>-->
+            <!--                <artifactId>spring-cloud-starter-gateway</artifactId>-->
+            <!--                <version>${spring-cloud-gateway.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba</groupId>-->
+            <!--                <artifactId>transmittable-thread-local</artifactId>-->
+            <!--                <version>${transmittable-thread-local.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.cloud</groupId>-->
+            <!--                <artifactId>spring-cloud-starter-openfeign</artifactId>-->
+            <!--                <version>${spring-cloud-openfeign.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba</groupId>-->
+            <!--                <artifactId>fastjson</artifactId>-->
+            <!--                <version>${fastjson.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba.fastjson2</groupId>-->
+            <!--                <artifactId>fastjson2</artifactId>-->
+            <!--                <version>${fastjson2.version}</version>-->
+            <!--            </dependency>-->
+
+            <!--            <dependency>-->
+            <!--                <groupId>org.aspectj</groupId>-->
+            <!--                <artifactId>aspectjweaver</artifactId>-->
+            <!--                <version>${aspectjweaver.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.redisson</groupId>-->
+            <!--                <artifactId>redisson</artifactId>-->
+            <!--                <version>${redisson.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.redisson</groupId>-->
+            <!--                <artifactId>redisson-spring-cache</artifactId>-->
+            <!--                <version>${redisson.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.redisson</groupId>-->
+            <!--                <artifactId>redisson-spring-boot-starter</artifactId>-->
+            <!--                <version>${redisson-spring-boot-starter.version}</version>-->
+            <!--            </dependency>-->
+
+            <!--            <dependency>-->
+            <!--                <groupId>com.google.zxing</groupId>-->
+            <!--                <artifactId>javase</artifactId>-->
+            <!--                <version>${javase.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.mysql</groupId>-->
+            <!--                <artifactId>mysql-connector-j</artifactId>-->
+            <!--                <version>${mysql-connector-j.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 达梦数据库 Dm &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.dameng</groupId>-->
+            <!--                <artifactId>DmJdbcDriver18</artifactId>-->
+            <!--                <version>${dm.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.freemarker</groupId>-->
+            <!--                <artifactId>freemarker</artifactId>-->
+            <!--                <version>${freemarker.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>jakarta.mail</groupId>-->
+            <!--                <artifactId>jakarta.mail-api</artifactId>-->
+            <!--                <version>${jakarta.mail-api.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.ben-manes.caffeine</groupId>-->
+            <!--                <artifactId>caffeine</artifactId>-->
+            <!--                <version>${caffeine.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.commons</groupId>-->
+            <!--                <artifactId>commons-pool2</artifactId>-->
+            <!--                <version>${commons-pool2.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.zaxxer</groupId>-->
+            <!--                <artifactId>HikariCP</artifactId>-->
+            <!--                <version>${hikariCP.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.slf4j</groupId>-->
+            <!--                <artifactId>slf4j-api</artifactId>-->
+            <!--                <version>${slf4j-api.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.tomcat.embed</groupId>-->
+            <!--                <artifactId>tomcat-embed-core</artifactId>-->
+            <!--                <version>${tomcat.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.jsoup</groupId>-->
+            <!--                <artifactId>jsoup</artifactId>-->
+            <!--                <version>${jsoup.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.httpcomponents.client5</groupId>-->
+            <!--                <artifactId>httpclient5</artifactId>-->
+            <!--                <version>${httpclient5.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; emoji-java &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.vdurmont</groupId>-->
+            <!--                <artifactId>emoji-java</artifactId>-->
+            <!--                <version>${emoji-java.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 微信小程序 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.binarywang</groupId>-->
+            <!--                <artifactId>weixin-java-miniapp</artifactId>-->
+            <!--                <version>${weixin-java.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 微信支付 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.binarywang</groupId>-->
+            <!--                <artifactId>weixin-java-pay</artifactId>-->
+            <!--                <version>${weixin-java.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 微信公众号 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.binarywang</groupId>-->
+            <!--                <artifactId>weixin-java-mp</artifactId>-->
+            <!--                <version>${weixin-java.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 企业号/企业微信 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.binarywang</groupId>-->
+            <!--                <artifactId>weixin-java-cp</artifactId>-->
+            <!--                <version>${weixin-java.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 微信开放平台 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.binarywang</groupId>-->
+            <!--                <artifactId>weixin-java-open</artifactId>-->
+            <!--                <version>${weixin-java.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 视频号/微信小店 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.binarywang</groupId>-->
+            <!--                <artifactId>weixin-java-channel</artifactId>-->
+            <!--                <version>${weixin-java.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 动态数据源 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.baomidou</groupId>-->
+            <!--                <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>-->
+            <!--                <version>${dynamic-datasource-spring-boot3.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash;配置文件加解密&ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.ulisesbocchio</groupId>-->
+            <!--                <artifactId>jasypt-spring-boot-starter</artifactId>-->
+            <!--                <version>${jasypt-spring-boot-starter.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>jakarta.servlet</groupId>-->
+            <!--                <artifactId>jakarta.servlet-api</artifactId>-->
+            <!--                <version>${jakarta.servlet-api.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; logback &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>ch.qos.logback</groupId>-->
+            <!--                <artifactId>logback-classic</artifactId>-->
+            <!--                <version>${logback.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 文本差异对比库 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>io.github.java-diff-utils</groupId>-->
+            <!--                <artifactId>java-diff-utils</artifactId>-->
+            <!--                <version>${java-diff-utils.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; fastexcel 导入导出依赖 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>cn.idev.excel</groupId>-->
+            <!--                <artifactId>fastexcel</artifactId>-->
+            <!--                <version>${fastexcel.version}</version>-->
+            <!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -591,7 +598,7 @@
                 <version>${license-maven-plugin.version}</version>
                 <configuration>
                     <properties>
-                        <year>2025-2026</year>
+                        <year>2026-2027</year>
                         <owner>Lypxc</owner>
                         <email>545685602@qq.com</email>
                     </properties>

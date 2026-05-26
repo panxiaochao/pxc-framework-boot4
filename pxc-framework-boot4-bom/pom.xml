@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>pxc-framework-boot4-bom</artifactId>
+    <groupId>io.github.panxiaochao</groupId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>pxc framework boot4 依赖项管理</description>
+
+    <url>https://github.com/panxiaochao/pxc-framework-boot4</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Lypxc</name>
+            <email>545685602@qq.com</email>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/panxiaochao/pxc-framework-boot4.git</url>
+        <connection>scm:git:https://github.com/panxiaochao/pxc-framework-boot4.git
+        </connection>
+        <developerConnection>scm:git:https://github.com/panxiaochao/pxc-framework-boot4.git
+        </developerConnection>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://ossrh-staging-api.central.sonatype.com/service/local/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <revision>4.0.0-SNAPSHOT</revision>
+        <java.version>21</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- 插件版本 -->
+        <!--        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>-->
+        <!--        <maven-compiler-plugin.verison>3.15.0</maven-compiler-plugin.verison>-->
+        <!--        <maven-source-plugin.verison>3.4.0</maven-source-plugin.verison>-->
+        <!--        <maven-javadoc-plugin.verison>3.12.0</maven-javadoc-plugin.verison>-->
+        <!--        <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>-->
+        <!--        <license-maven-plugin.version>5.0.0</license-maven-plugin.version>-->
+        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+        <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
+    </properties>
+
+    <!--    <dependencyManagement>-->
+    <!--        <dependencies>-->
+    <!--            &lt;!&ndash; 核心模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-core</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 加密解密模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-crypto</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 动态数据源 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-dynamic-datasource</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; Cache 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-cache</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 验证码 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-captcha</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 公共通用模块 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-common</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 组件 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-component</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; Email 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-email</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; Excel 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-excel</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; Holiday 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-holiday</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; ip2region 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-ip2region</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 工具类 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-util</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; Jackson 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-jackson</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; Redis 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-redis</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 限流 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-ratelimiter</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 幂等重复提交 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-repeatsubmit</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 脱敏加密 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-sensitive</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 操作日志 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-operate-log</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 日志追踪链路 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-trace-log</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; ORM 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-mybatis-plus</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; 代码构建 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-mybatis-plus-generator</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; wei-xin 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-weixin</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; Mvc Web 模块 &ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>io.github.panxiaochao</groupId>-->
+    <!--                <artifactId>pxc-framework-boot4-web</artifactId>-->
+    <!--                <version>${revision}</version>-->
+    <!--            </dependency>-->
+    <!--        </dependencies>-->
+    <!--    </dependencyManagement>-->
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- GPG 打包插件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--batch</arg>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </plugin>
+                    <!-- 新版发布到 Maven 中心仓库插件 -->
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${central-publishing-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>false</autoPublish>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
