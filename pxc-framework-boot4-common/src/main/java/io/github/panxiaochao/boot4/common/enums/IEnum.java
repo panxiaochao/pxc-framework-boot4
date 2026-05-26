@@ -20,7 +20,7 @@ package io.github.panxiaochao.boot4.common.enums;
  * 枚举基类.
  * </p>
  *
- * @author LyPxc
+ * @author Lypxc
  * @since 2023-03-13
  */
 public interface IEnum<T> {
