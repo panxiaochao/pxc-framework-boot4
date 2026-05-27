@@ -1,0 +1,65 @@
+package io.github.panxiaochao.boot4.utils.date;
+
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
+/**
+ * <p>
+ * 日期格式化相关统一格式类
+ * </p>
+ *
+ * @author Lypxc
+ * @since 2022/4/12
+ */
+public class DatePattern {
+
+	/**
+	 * 24小时 毫秒数
+	 */
+	public static final long DAY_MILLIS = 24 * 60 * 60 * 1000;
+
+	/**
+	 * 1小时 毫秒数
+	 */
+	public static final long HOUR_MILLIS = 60 * 60 * 1000;
+
+	/**
+	 * 1分钟 毫秒数
+	 */
+	public static final long MINUTE_MILLIS = 60 * 1000;
+
+	/**
+	 * 1秒 毫秒数
+	 */
+	public static final long SECOND_MILLIS = 1000;
+
+	public static final String NORMAL_YEAR_PATTERN = "yyyy";
+
+	public static final DateTimeFormatter NORMAL_YEAR_FORMATTER = buildFormatter(NORMAL_YEAR_PATTERN);
+
+	public static final String NORMAL_YEAR_MONTH_PATTERN = "yyyy-MM";
+
+	public static final DateTimeFormatter NORMAL_YEAR_MONTH_FORMATTER = buildFormatter(NORMAL_YEAR_MONTH_PATTERN);
+
+	public static final String NORMAL_DATE_PATTERN = "yyyy-MM-dd";
+
+	public static final String NORMAL_TIME_PATTERN = "HH:mm:ss";
+
+	public static final DateTimeFormatter NORMAL_TIME_FORMATTER = buildFormatter(NORMAL_TIME_PATTERN);
+
+	public static final DateTimeFormatter NORMAL_DATE_FORMATTER = buildFormatter(NORMAL_DATE_PATTERN);
+
+	public static final String NORMAL_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
+	public static final DateTimeFormatter NORMAL_DATE_TIME_FORMATTER = buildFormatter(NORMAL_DATE_TIME_PATTERN);
+
+	public static final String SIMPLE_DATE_TIME_PATTERN = "yyyy/MM/dd HH:mm:ss";
+
+	public static final String CN_DATE_PATTERN = "yyyy年MM月dd日";
+
+	public static DateTimeFormatter buildFormatter(String datePattern) {
+		return DateTimeFormatter.ofPattern(datePattern, Locale.getDefault()).withZone(ZoneId.systemDefault());
+	}
+
+}
