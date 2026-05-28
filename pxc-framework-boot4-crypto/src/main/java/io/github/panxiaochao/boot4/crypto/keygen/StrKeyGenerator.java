@@ -11,9 +11,9 @@ package io.github.panxiaochao.boot4.crypto.keygen;
  */
 public interface StrKeyGenerator {
 
-	/**
-	 * Generate a new key.
-	 */
-	String generateKey();
+    /**
+     * Generate a new key.
+     */
+    String generateKey();
 
 }

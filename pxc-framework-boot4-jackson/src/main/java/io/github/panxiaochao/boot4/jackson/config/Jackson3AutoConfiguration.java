@@ -54,35 +54,34 @@ import java.util.TimeZone;
 @AutoConfiguration(before = JacksonAutoConfiguration.class)
 public class Jackson3AutoConfiguration {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(Jackson3AutoConfiguration.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Jackson3AutoConfiguration.class);
 
-	/**
-	 * <p>
-	 * To override the default ObjectMapper (and XmlMapper).
-	 * </p>
-	 * <pre>
-	 *     1.JsonMapperBuilderCustomizer 注册Bean
-	 *     2.生成Bean JsonMapperBuilder
-	 *     3.通过 JsonMapperBuilder 生成 ObjectMapper
-	 * </pre>
-	 * @return custom JsonMapperBuilderCustomizer
-	 */
-	@Bean
-	public JsonMapperBuilderCustomizer jsonMapperBuilderCustomizer() {
-		LOGGER.info("配置[JsonMapper]成功！");
-		return builder -> builder.defaultLocale(Locale.CHINA)
-			// 所有字段全部展现
-			.changeDefaultPropertyInclusion(value -> JsonInclude.Value.ALL_ALWAYS)
-			.defaultTimeZone(TimeZone.getTimeZone("Asia/Shanghai"))
-			.defaultDateFormat(new SimpleDateFormat(DatePattern.NORMAL_DATE_TIME_PATTERN))
-			// 忽略空Bean转json的错误
-			.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
-			// 忽略未知属性
-			.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-			// 时间格式化处理
-			.addModule(new CustomizeJavaTimeModule())
-			// 自定义 Null 值处理
-			.build();
-	}
+    /**
+     * <p>
+     * To override the default ObjectMapper (and XmlMapper).
+     * </p>
+     * <pre>
+     *     1.JsonMapperBuilderCustomizer 注册Bean
+     *     2.生成Bean JsonMapperBuilder
+     *     3.通过 JsonMapperBuilder 生成 ObjectMapper
+     * </pre>
+     * @return custom JsonMapperBuilderCustomizer
+     */
+    @Bean
+    public JsonMapperBuilderCustomizer jsonMapperBuilderCustomizer() {
+        LOGGER.info("配置[JsonMapper]成功！");
+        return builder -> builder.defaultLocale(Locale.CHINA)
+            // 所有字段全部展现
+            .changeDefaultPropertyInclusion(value -> JsonInclude.Value.ALL_ALWAYS)
+            .defaultTimeZone(TimeZone.getTimeZone("Asia/Shanghai"))
+            .defaultDateFormat(new SimpleDateFormat(DatePattern.NORMAL_DATE_TIME_PATTERN))
+            // 忽略空Bean转json的错误
+            .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+            // 忽略未知属性
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            // 时间格式化处理
+            .addModule(new CustomizeJavaTimeModule())
+            .build();
+    }
 
 }

@@ -19,178 +19,178 @@ import java.util.function.Consumer;
 @Getter
 public class TreeNode<T> implements Serializable {
 
-	private static final long serialVersionUID = 6308056513889157607L;
+    private static final long serialVersionUID = 6308056513889157607L;
 
-	/**
-	 * 节点 ID
-	 */
-	private T id;
+    /**
+     * 节点 ID
+     */
+    private T id;
 
-	/**
-	 * 父节点 ID
-	 */
-	private T parentId;
+    /**
+     * 父节点 ID
+     */
+    private T parentId;
 
-	/**
-	 * 节点值
-	 */
-	private CharSequence labelValue;
+    /**
+     * 节点值
+     */
+    private CharSequence labelValue;
 
-	/**
-	 * 权重 越小优先级越高
-	 */
-	private Comparable<?> weight;
+    /**
+     * 权重 越小优先级越高
+     */
+    private Comparable<?> weight;
 
-	/**
-	 * 扩展属性字段
-	 */
-	private Map<String, Object> extra;
+    /**
+     * 扩展属性字段
+     */
+    private Map<String, Object> extra;
 
-	/**
-	 * 构造方法
-	 * @param id 节点ID
-	 * @param parentId 父节点ID
-	 * @param labelValue 节点值
-	 * @return 树节点
-	 * @param <T> 节点参数类型
-	 */
-	public static <T> TreeNode<T> of(T id, T parentId, CharSequence labelValue) {
-		return of(id, parentId, labelValue, 0, null);
-	}
+    /**
+     * 构造方法
+     * @param id 节点ID
+     * @param parentId 父节点ID
+     * @param labelValue 节点值
+     * @return 树节点
+     * @param <T> 节点参数类型
+     */
+    public static <T> TreeNode<T> of(T id, T parentId, CharSequence labelValue) {
+        return of(id, parentId, labelValue, 0, null);
+    }
 
-	/**
-	 * 构造方法
-	 * @param id 节点ID
-	 * @param parentId 父节点ID
-	 * @param labelValue 节点值
-	 * @param extraMap 扩展属性
-	 * @return 树节点
-	 * @param <T> 节点参数类型
-	 */
-	public static <T> TreeNode<T> of(T id, T parentId, CharSequence labelValue,
-			Consumer<Map<String, Object>> extraMap) {
-		return of(id, parentId, labelValue, 0, extraMap);
-	}
+    /**
+     * 构造方法
+     * @param id 节点ID
+     * @param parentId 父节点ID
+     * @param labelValue 节点值
+     * @param extraMap 扩展属性
+     * @return 树节点
+     * @param <T> 节点参数类型
+     */
+    public static <T> TreeNode<T> of(T id, T parentId, CharSequence labelValue,
+            Consumer<Map<String, Object>> extraMap) {
+        return of(id, parentId, labelValue, 0, extraMap);
+    }
 
-	/**
-	 * 构造方法
-	 * @param id 节点ID
-	 * @param parentId 父节点ID
-	 * @param labelValue 节点值
-	 * @param weight 权重值
-	 * @param extraMap 扩展属性
-	 * @return 树节点
-	 * @param <T> 节点参数类型
-	 */
-	public static <T> TreeNode<T> of(T id, T parentId, CharSequence labelValue, Comparable<?> weight,
-			Consumer<Map<String, Object>> extraMap) {
-		return new TreeNode<T>(id, parentId, labelValue, weight, extraMap);
-	}
+    /**
+     * 构造方法
+     * @param id 节点ID
+     * @param parentId 父节点ID
+     * @param labelValue 节点值
+     * @param weight 权重值
+     * @param extraMap 扩展属性
+     * @return 树节点
+     * @param <T> 节点参数类型
+     */
+    public static <T> TreeNode<T> of(T id, T parentId, CharSequence labelValue, Comparable<?> weight,
+            Consumer<Map<String, Object>> extraMap) {
+        return new TreeNode<T>(id, parentId, labelValue, weight, extraMap);
+    }
 
-	/**
-	 * 构造方法
-	 * @param id 父 ID
-	 * @param parentId 父节点 ID
-	 * @param labelValue 节点值
-	 * @param weight 权重
-	 * @param extraMap 扩展属性
-	 */
-	private TreeNode(T id, T parentId, CharSequence labelValue, Comparable<?> weight,
-			Consumer<Map<String, Object>> extraMap) {
-		this.id = id;
-		this.parentId = parentId;
-		this.labelValue = labelValue;
-		this.weight = weight;
-		this.extra = new LinkedHashMap<>();
-		if (extraMap != null) {
-			extraMap.accept(this.extra);
-		}
-	}
+    /**
+     * 构造方法
+     * @param id 父 ID
+     * @param parentId 父节点 ID
+     * @param labelValue 节点值
+     * @param weight 权重
+     * @param extraMap 扩展属性
+     */
+    private TreeNode(T id, T parentId, CharSequence labelValue, Comparable<?> weight,
+            Consumer<Map<String, Object>> extraMap) {
+        this.id = id;
+        this.parentId = parentId;
+        this.labelValue = labelValue;
+        this.weight = weight;
+        this.extra = new LinkedHashMap<>();
+        if (extraMap != null) {
+            extraMap.accept(this.extra);
+        }
+    }
 
-	/**
-	 * 设置节点 ID
-	 * @param id 节点 ID
-	 * @return 当前树节点实例，支持链式调用
-	 */
-	public TreeNode<T> setId(T id) {
-		this.id = id;
-		return this;
-	}
+    /**
+     * 设置节点 ID
+     * @param id 节点 ID
+     * @return 当前树节点实例，支持链式调用
+     */
+    public TreeNode<T> setId(T id) {
+        this.id = id;
+        return this;
+    }
 
-	/**
-	 * 设置父节点 ID
-	 * @param parentId 父节点 ID
-	 * @return 当前树节点实例，支持链式调用
-	 */
-	public TreeNode<T> setParentId(T parentId) {
-		this.parentId = parentId;
-		return this;
-	}
+    /**
+     * 设置父节点 ID
+     * @param parentId 父节点 ID
+     * @return 当前树节点实例，支持链式调用
+     */
+    public TreeNode<T> setParentId(T parentId) {
+        this.parentId = parentId;
+        return this;
+    }
 
-	/**
-	 * 设置节点值
-	 * @param labelValue 节点值
-	 * @return 当前树节点实例，支持链式调用
-	 */
-	public TreeNode<T> setLabelValue(CharSequence labelValue) {
-		this.labelValue = labelValue;
-		return this;
-	}
+    /**
+     * 设置节点值
+     * @param labelValue 节点值
+     * @return 当前树节点实例，支持链式调用
+     */
+    public TreeNode<T> setLabelValue(CharSequence labelValue) {
+        this.labelValue = labelValue;
+        return this;
+    }
 
-	/**
-	 * 设置节点权重
-	 * @param weight 节点权重
-	 * @return 当前树节点实例，支持链式调用
-	 */
-	public TreeNode<T> setWeight(Comparable<?> weight) {
-		this.weight = weight;
-		return this;
-	}
+    /**
+     * 设置节点权重
+     * @param weight 节点权重
+     * @return 当前树节点实例，支持链式调用
+     */
+    public TreeNode<T> setWeight(Comparable<?> weight) {
+        this.weight = weight;
+        return this;
+    }
 
-	/**
-	 * 设置扩展字段，替换整个扩展属性 Map
-	 * @param extra 扩展字段的 Map
-	 * @return 当前树节点实例，支持链式调用
-	 */
-	public TreeNode<T> setExtra(Map<String, Object> extra) {
-		this.extra = extra;
-		return this;
-	}
+    /**
+     * 设置扩展字段，替换整个扩展属性 Map
+     * @param extra 扩展字段的 Map
+     * @return 当前树节点实例，支持链式调用
+     */
+    public TreeNode<T> setExtra(Map<String, Object> extra) {
+        this.extra = extra;
+        return this;
+    }
 
-	/**
-	 * 设置扩展字段
-	 * @param extra 扩展字段
-	 * @return this
-	 */
-	public TreeNode<T> setExtra(Consumer<Map<String, Object>> extra) {
-		extra.accept(this.extra);
-		return this;
-	}
+    /**
+     * 设置扩展字段
+     * @param extra 扩展字段
+     * @return this
+     */
+    public TreeNode<T> setExtra(Consumer<Map<String, Object>> extra) {
+        extra.accept(this.extra);
+        return this;
+    }
 
-	/**
-	 * 重写 equals 方法，根据节点 ID 判断两个节点是否相等
-	 * @param o 要比较的对象
-	 * @return 如果两个节点的 ID 相等，则返回 true，否则返回 false
-	 */
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		TreeNode<?> treeNode = (TreeNode<?>) o;
-		return Objects.equals(id, treeNode.getId());
-	}
+    /**
+     * 重写 equals 方法，根据节点 ID 判断两个节点是否相等
+     * @param o 要比较的对象
+     * @return 如果两个节点的 ID 相等，则返回 true，否则返回 false
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TreeNode<?> treeNode = (TreeNode<?>) o;
+        return Objects.equals(id, treeNode.getId());
+    }
 
-	/**
-	 * 重写 hashCode 方法，根据节点 ID 生成哈希码
-	 * @return 节点 ID 的哈希码
-	 */
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+    /**
+     * 重写 hashCode 方法，根据节点 ID 生成哈希码
+     * @return 节点 ID 的哈希码
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
 }

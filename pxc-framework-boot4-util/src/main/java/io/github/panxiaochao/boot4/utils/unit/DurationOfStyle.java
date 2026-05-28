@@ -18,142 +18,142 @@ import java.util.regex.Pattern;
  */
 public enum DurationOfStyle {
 
-	/**
-	 * Simple formatting, for example '1s'.
-	 */
-	SIMPLE("^([+-]?\\d+)([a-zA-Z]{0,2})$") {
+    /**
+     * Simple formatting, for example '1s'.
+     */
+    SIMPLE("^([+-]?\\d+)([a-zA-Z]{0,2})$") {
 
-		@Override
-		public Duration parse(String value, ChronoUnit unit) {
-			try {
-				Matcher matcher = matcher(value);
-				Assert.state(matcher.matches(), "Does not match simple duration pattern");
-				String suffix = matcher.group(2);
-				return (StringUtils.hasLength(suffix) ? DurationOfUnit.fromSuffix(suffix)
-						: DurationOfUnit.fromChronoUnit(unit))
-					.parse(matcher.group(1));
-			}
-			catch (Exception ex) {
-				throw new IllegalArgumentException("'" + value + "' is not a valid simple duration", ex);
-			}
-		}
+        @Override
+        public Duration parse(String value, ChronoUnit unit) {
+            try {
+                Matcher matcher = matcher(value);
+                Assert.state(matcher.matches(), "Does not match simple duration pattern");
+                String suffix = matcher.group(2);
+                return (StringUtils.hasLength(suffix) ? DurationOfUnit.fromSuffix(suffix)
+                        : DurationOfUnit.fromChronoUnit(unit))
+                    .parse(matcher.group(1));
+            }
+            catch (Exception ex) {
+                throw new IllegalArgumentException("'" + value + "' is not a valid simple duration", ex);
+            }
+        }
 
-		@Override
-		public String print(Duration value, ChronoUnit unit) {
-			return DurationOfUnit.fromChronoUnit(unit).print(value);
-		}
+        @Override
+        public String print(Duration value, ChronoUnit unit) {
+            return DurationOfUnit.fromChronoUnit(unit).print(value);
+        }
 
-	},
+    },
 
-	/**
-	 * ISO-8601 formatting.
-	 */
-	ISO8601("^[+-]?[pP].*$") {
+    /**
+     * ISO-8601 formatting.
+     */
+    ISO8601("^[+-]?[pP].*$") {
 
-		@Override
-		public Duration parse(String value, ChronoUnit unit) {
-			try {
-				return Duration.parse(value);
-			}
-			catch (Exception ex) {
-				throw new IllegalArgumentException("'" + value + "' is not a valid ISO-8601 duration", ex);
-			}
-		}
+        @Override
+        public Duration parse(String value, ChronoUnit unit) {
+            try {
+                return Duration.parse(value);
+            }
+            catch (Exception ex) {
+                throw new IllegalArgumentException("'" + value + "' is not a valid ISO-8601 duration", ex);
+            }
+        }
 
-		@Override
-		public String print(Duration value, ChronoUnit unit) {
-			return value.toString();
-		}
+        @Override
+        public String print(Duration value, ChronoUnit unit) {
+            return value.toString();
+        }
 
-	};
+    };
 
-	private final Pattern pattern;
+    private final Pattern pattern;
 
-	DurationOfStyle(String pattern) {
-		this.pattern = Pattern.compile(pattern);
-	}
+    DurationOfStyle(String pattern) {
+        this.pattern = Pattern.compile(pattern);
+    }
 
-	protected final boolean matches(String value) {
-		return this.pattern.matcher(value).matches();
-	}
+    protected final boolean matches(String value) {
+        return this.pattern.matcher(value).matches();
+    }
 
-	protected final Matcher matcher(String value) {
-		return this.pattern.matcher(value);
-	}
+    protected final Matcher matcher(String value) {
+        return this.pattern.matcher(value);
+    }
 
-	/**
-	 * Parse the given value to a duration.
-	 * @param value the value to parse
-	 * @return a duration
-	 */
-	public Duration parse(String value) {
-		return parse(value, null);
-	}
+    /**
+     * Parse the given value to a duration.
+     * @param value the value to parse
+     * @return a duration
+     */
+    public Duration parse(String value) {
+        return parse(value, null);
+    }
 
-	/**
-	 * Parse the given value to a duration.
-	 * @param value the value to parse
-	 * @param unit the duration unit to use if the value doesn't specify one ({@code null}
-	 * will default to ms)
-	 * @return a duration
-	 */
-	public abstract Duration parse(String value, ChronoUnit unit);
+    /**
+     * Parse the given value to a duration.
+     * @param value the value to parse
+     * @param unit the duration unit to use if the value doesn't specify one ({@code null}
+     * will default to ms)
+     * @return a duration
+     */
+    public abstract Duration parse(String value, ChronoUnit unit);
 
-	/**
-	 * Print the specified duration.
-	 * @param value the value to print
-	 * @return the printed result
-	 */
-	public String print(Duration value) {
-		return print(value, null);
-	}
+    /**
+     * Print the specified duration.
+     * @param value the value to print
+     * @return the printed result
+     */
+    public String print(Duration value) {
+        return print(value, null);
+    }
 
-	/**
-	 * Print the specified duration using the given unit.
-	 * @param value the value to print
-	 * @param unit the value to use for printing
-	 * @return the printed result
-	 */
-	public abstract String print(Duration value, ChronoUnit unit);
+    /**
+     * Print the specified duration using the given unit.
+     * @param value the value to print
+     * @param unit the value to use for printing
+     * @return the printed result
+     */
+    public abstract String print(Duration value, ChronoUnit unit);
 
-	/**
-	 * Detect the style then parse the value to return a duration.
-	 * @param value the value to parse
-	 * @return the parsed duration
-	 * @throws IllegalArgumentException if the value is not a known style or cannot be
-	 * parsed
-	 */
-	public static Duration detectAndParse(String value) {
-		return detectAndParse(value, null);
-	}
+    /**
+     * Detect the style then parse the value to return a duration.
+     * @param value the value to parse
+     * @return the parsed duration
+     * @throws IllegalArgumentException if the value is not a known style or cannot be
+     * parsed
+     */
+    public static Duration detectAndParse(String value) {
+        return detectAndParse(value, null);
+    }
 
-	/**
-	 * Detect the style then parse the value to return a duration.
-	 * @param value the value to parse
-	 * @param unit the duration unit to use if the value doesn't specify one ({@code null}
-	 * will default to ms)
-	 * @return the parsed duration
-	 * @throws IllegalArgumentException if the value is not a known style or cannot be
-	 * parsed
-	 */
-	public static Duration detectAndParse(String value, ChronoUnit unit) {
-		return detect(value).parse(value, unit);
-	}
+    /**
+     * Detect the style then parse the value to return a duration.
+     * @param value the value to parse
+     * @param unit the duration unit to use if the value doesn't specify one ({@code null}
+     * will default to ms)
+     * @return the parsed duration
+     * @throws IllegalArgumentException if the value is not a known style or cannot be
+     * parsed
+     */
+    public static Duration detectAndParse(String value, ChronoUnit unit) {
+        return detect(value).parse(value, unit);
+    }
 
-	/**
-	 * Detect the style from the given source value.
-	 * @param value the source value
-	 * @return the duration style
-	 * @throws IllegalArgumentException if the value is not a known style
-	 */
-	public static DurationOfStyle detect(String value) {
-		Assert.notNull(value, "Value must not be null");
-		for (DurationOfStyle candidate : values()) {
-			if (candidate.matches(value)) {
-				return candidate;
-			}
-		}
-		throw new IllegalArgumentException("'" + value + "' is not a valid duration");
-	}
+    /**
+     * Detect the style from the given source value.
+     * @param value the source value
+     * @return the duration style
+     * @throws IllegalArgumentException if the value is not a known style
+     */
+    public static DurationOfStyle detect(String value) {
+        Assert.notNull(value, "Value must not be null");
+        for (DurationOfStyle candidate : values()) {
+            if (candidate.matches(value)) {
+                return candidate;
+            }
+        }
+        throw new IllegalArgumentException("'" + value + "' is not a valid duration");
+    }
 
 }

@@ -13,44 +13,44 @@ import java.security.SecureRandom;
  */
 public class BytesKeySecureRandomGenerator implements BytesKeyGenerator {
 
-	private static final int DEFAULT_KEY_LENGTH = 16;
+    private static final int DEFAULT_KEY_LENGTH = 16;
 
-	private final SecureRandom random;
+    private final SecureRandom random;
 
-	private final int keySize;
+    private final int keySize;
 
-	/**
-	 * Creates a secure random key generator using the defaults.
-	 */
-	BytesKeySecureRandomGenerator() {
-		this(DEFAULT_KEY_LENGTH);
-	}
+    /**
+     * Creates a secure random key generator using the defaults.
+     */
+    BytesKeySecureRandomGenerator() {
+        this(DEFAULT_KEY_LENGTH);
+    }
 
-	/**
-	 * Creates a secure random key generator with a custom key length.
-	 */
-	BytesKeySecureRandomGenerator(int keySize) {
-		this.random = new SecureRandom();
-		this.keySize = keySize;
-	}
+    /**
+     * Creates a secure random key generator with a custom key length.
+     */
+    BytesKeySecureRandomGenerator(int keySize) {
+        this.random = new SecureRandom();
+        this.keySize = keySize;
+    }
 
-	/**
-	 * Get the length, in bytes, of keys created by this generator. Most unique keys are
-	 * at least 8 bytes in length.
-	 */
-	@Override
-	public int getKeySize() {
-		return this.keySize;
-	}
+    /**
+     * Get the length, in bytes, of keys created by this generator. Most unique keys are
+     * at least 8 bytes in length.
+     */
+    @Override
+    public int getKeySize() {
+        return this.keySize;
+    }
 
-	/**
-	 * Generate a new key.
-	 */
-	@Override
-	public byte[] generateKey() {
-		byte[] bytes = new byte[this.keySize];
-		this.random.nextBytes(bytes);
-		return bytes;
-	}
+    /**
+     * Generate a new key.
+     */
+    @Override
+    public byte[] generateKey() {
+        byte[] bytes = new byte[this.keySize];
+        this.random.nextBytes(bytes);
+        return bytes;
+    }
 
 }

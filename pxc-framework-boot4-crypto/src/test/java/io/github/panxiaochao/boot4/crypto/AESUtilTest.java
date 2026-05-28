@@ -14,14 +14,14 @@ import org.junit.jupiter.api.Test;
  */
 public class AESUtilTest {
 
-	private final AesBytesEncryptor aesBytesEncryptor = new AesBytesEncryptor("123");
+    private final AesBytesEncryptor aesBytesEncryptor = new AesBytesEncryptor("123");
 
-	@Test
-	void aes_test() {
-		byte[] encrypt1 = aesBytesEncryptor.encrypt("你好");
-		System.out.println("加密：" + Base64Util.encodeToString(encrypt1));
-		byte[] decrypt1 = aesBytesEncryptor.decrypt(encrypt1);
-		System.out.println("解密：" + new String(decrypt1));
-	}
+    @Test
+    void aes_test() {
+        byte[] encrypt1 = aesBytesEncryptor.encrypt("你好");
+        System.out.println("加密：" + Base64Util.encodeToString(encrypt1));
+        byte[] decrypt1 = aesBytesEncryptor.decrypt(encrypt1);
+        System.out.println("解密：" + new String(decrypt1));
+    }
 
 }

@@ -11,15 +11,15 @@ package io.github.panxiaochao.boot4.crypto.keygen;
  */
 public interface BytesKeyGenerator {
 
-	/**
-	 * Get the length, in bytes, of keys created by this generator. Most unique keys are
-	 * at least 16 bytes in length.
-	 */
-	int getKeySize();
+    /**
+     * Get the length, in bytes, of keys created by this generator. Most unique keys are
+     * at least 16 bytes in length.
+     */
+    int getKeySize();
 
-	/**
-	 * Generate a new key.
-	 */
-	byte[] generateKey();
+    /**
+     * Generate a new key.
+     */
+    byte[] generateKey();
 
 }

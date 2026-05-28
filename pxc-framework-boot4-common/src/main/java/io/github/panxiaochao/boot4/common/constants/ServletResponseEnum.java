@@ -16,74 +16,74 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ServletResponseEnum implements IResponseEnum<Integer> {
 
-	/**
-	 * 请求地址无效
-	 */
-	NoHandlerFoundException(5001, "请求地址无效"),
-	/**
-	 * 请求方法不支持
-	 */
-	HttpRequestMethodNotSupportedException(5002, "请求方法不支持"),
-	/**
-	 * 请求头不支持
-	 */
-	HttpMediaTypeNotSupportedException(5003, "请求头不支持"),
-	/**
-	 * 未检测到参数路径
-	 */
-	MissingPathVariableException(5004, "未检测到参数路径"),
-	/**
-	 * 请求方法不支持
-	 */
-	MissingServletRequestParameterException(5005, "请求方法不支持"),
-	/**
-	 * 参数类型匹配失败
-	 */
-	TypeMismatchException(5006, "参数类型匹配失败"),
-	/**
-	 * 无效接收参数@RequestBody, 序列化失败
-	 */
-	HttpMessageNotReadableException(5007, "无效接收参数@RequestBody, 序列化失败"),
-	/**
-	 * 返回序列化失败
-	 */
-	HttpMessageNotWritableException(5008, "返回序列化失败"),
-	/**
-	 * 找不到可接收MediaType
-	 */
-	HttpMediaTypeNotAcceptableException(5009, "找不到可接收MediaType"),
-	/**
-	 * 输入参数有误
-	 */
-	ServletRequestBindingException(5010, "输入参数有误"),
-	/**
-	 * 请求方法不支持
-	 */
-	ConversionNotSupportedException(5011, "请求方法不支持"),
-	/**
-	 * 输入参数有误
-	 */
-	MissingServletRequestPartException(5012, "输入参数有误"),
-	/**
-	 * 异步请求超时
-	 */
-	AsyncRequestTimeoutException(5013, "异步请求超时"),
-	/**
-	 * 无效参数
-	 */
-	InvalidArgumentException(5014, "无效参数");
+    /**
+     * 请求地址无效
+     */
+    NoHandlerFoundException(5001, "请求地址无效"),
+    /**
+     * 请求方法不支持
+     */
+    HttpRequestMethodNotSupportedException(5002, "请求方法不支持"),
+    /**
+     * 请求头不支持
+     */
+    HttpMediaTypeNotSupportedException(5003, "请求头不支持"),
+    /**
+     * 未检测到参数路径
+     */
+    MissingPathVariableException(5004, "未检测到参数路径"),
+    /**
+     * 请求方法不支持
+     */
+    MissingServletRequestParameterException(5005, "请求方法不支持"),
+    /**
+     * 参数类型匹配失败
+     */
+    TypeMismatchException(5006, "参数类型匹配失败"),
+    /**
+     * 无效接收参数@RequestBody, 序列化失败
+     */
+    HttpMessageNotReadableException(5007, "无效接收参数@RequestBody, 序列化失败"),
+    /**
+     * 返回序列化失败
+     */
+    HttpMessageNotWritableException(5008, "返回序列化失败"),
+    /**
+     * 找不到可接收MediaType
+     */
+    HttpMediaTypeNotAcceptableException(5009, "找不到可接收MediaType"),
+    /**
+     * 输入参数有误
+     */
+    ServletRequestBindingException(5010, "输入参数有误"),
+    /**
+     * 请求方法不支持
+     */
+    ConversionNotSupportedException(5011, "请求方法不支持"),
+    /**
+     * 输入参数有误
+     */
+    MissingServletRequestPartException(5012, "输入参数有误"),
+    /**
+     * 异步请求超时
+     */
+    AsyncRequestTimeoutException(5013, "异步请求超时"),
+    /**
+     * 无效参数
+     */
+    InvalidArgumentException(5014, "无效参数");
 
-	private final Integer code;
+    private final Integer code;
 
-	private final String message;
+    private final String message;
 
-	public String getMessageByCode(Integer code) {
-		for (ServletResponseEnum value : ServletResponseEnum.values()) {
-			if (value.getCode().equals(code)) {
-				return value.getMessage();
-			}
-		}
-		return "";
-	}
+    public String getMessageByCode(Integer code) {
+        for (ServletResponseEnum value : ServletResponseEnum.values()) {
+            if (value.getCode().equals(code)) {
+                return value.getMessage();
+            }
+        }
+        return "";
+    }
 
 }

@@ -14,28 +14,28 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DefaultDictResolver extends AbstractDictResolver {
 
-	private final ConcurrentHashMap<String, Map<String, String>> CONCURRENT_HASH_MAP = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Map<String, String>> CONCURRENT_HASH_MAP = new ConcurrentHashMap<>();
 
-	@Override
-	public Map<String, String> getAllDictByDictCode(String dictCode) {
-		String dictCacheKey = CACHE_KEY_PREFIX + dictCode;
-		Map<String, String> dictMap = CONCURRENT_HASH_MAP.getOrDefault(dictCacheKey, Map.of());
-		return dictMap.isEmpty() ? Map.of() : dictMap;
-	}
+    @Override
+    public Map<String, String> getAllDictByDictCode(String dictCode) {
+        String dictCacheKey = CACHE_KEY_PREFIX + dictCode;
+        Map<String, String> dictMap = CONCURRENT_HASH_MAP.getOrDefault(dictCacheKey, Map.of());
+        return dictMap.isEmpty() ? Map.of() : dictMap;
+    }
 
-	@Override
-	public void loadAllDict(Map<String, Map<String, String>> dictAllMap) {
-		dictAllMap.forEach((dictCode, map) -> CONCURRENT_HASH_MAP.put(CACHE_KEY_PREFIX + dictCode, map));
-	}
+    @Override
+    public void loadAllDict(Map<String, Map<String, String>> dictAllMap) {
+        dictAllMap.forEach((dictCode, map) -> CONCURRENT_HASH_MAP.put(CACHE_KEY_PREFIX + dictCode, map));
+    }
 
-	@Override
-	public void loadDict(String dictCode, Map<String, String> dictMap) {
-		CONCURRENT_HASH_MAP.put(CACHE_KEY_PREFIX + dictCode, dictMap);
-	}
+    @Override
+    public void loadDict(String dictCode, Map<String, String> dictMap) {
+        CONCURRENT_HASH_MAP.put(CACHE_KEY_PREFIX + dictCode, dictMap);
+    }
 
-	@Override
-	public void clearAllDict() {
-		CONCURRENT_HASH_MAP.clear();
-	}
+    @Override
+    public void clearAllDict() {
+        CONCURRENT_HASH_MAP.clear();
+    }
 
 }

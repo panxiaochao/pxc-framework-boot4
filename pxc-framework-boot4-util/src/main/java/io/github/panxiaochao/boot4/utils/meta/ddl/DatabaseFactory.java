@@ -29,31 +29,31 @@ import java.util.concurrent.Callable;
  */
 public final class DatabaseFactory {
 
-	private static final Map<DatabaseType, Callable<AbstractDatabase>> DATABASE_MAPPER = new HashMap<>() {
-		@Serial
-		private static final long serialVersionUID = 1L;
+    private static final Map<DatabaseType, Callable<AbstractDatabase>> DATABASE_MAPPER = new HashMap<>() {
+        @Serial
+        private static final long serialVersionUID = 1L;
 
-		{
-			put(DatabaseType.MYSQL, DatabaseMySqlImpl::new);
-			put(DatabaseType.DM, DatabaseDMImpl::new);
-		}
-	};
+        {
+            put(DatabaseType.MYSQL, DatabaseMySqlImpl::new);
+            put(DatabaseType.DM, DatabaseDMImpl::new);
+        }
+    };
 
-	public static AbstractDatabase getDatabaseInstance(DatabaseType type) {
-		Callable<AbstractDatabase> callable = DATABASE_MAPPER.get(type);
-		if (null != callable) {
-			try {
-				return callable.call();
-			}
-			catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		}
-		throw new UnsupportedOperationException(String.format("Unknown database type (%s)", type.name()));
-	}
+    public static AbstractDatabase getDatabaseInstance(DatabaseType type) {
+        Callable<AbstractDatabase> callable = DATABASE_MAPPER.get(type);
+        if (null != callable) {
+            try {
+                return callable.call();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        throw new UnsupportedOperationException(String.format("Unknown database type (%s)", type.name()));
+    }
 
-	private DatabaseFactory() {
-		throw new IllegalStateException("Illegal access to DatabaseFactory constructor");
-	}
+    private DatabaseFactory() {
+        throw new IllegalStateException("Illegal access to DatabaseFactory constructor");
+    }
 
 }

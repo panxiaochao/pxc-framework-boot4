@@ -10,152 +10,152 @@ package io.github.panxiaochao.boot4.utils;
  */
 public interface StringPools {
 
-	String AMPERSAND = "&";
+    String AMPERSAND = "&";
 
-	String AND = "and";
+    String AND = "and";
 
-	String AT = "@";
+    String AT = "@";
 
-	String ASTERISK = "*";
+    String ASTERISK = "*";
 
-	String STAR = ASTERISK;
+    String STAR = ASTERISK;
 
-	String BACK_SLASH = "\\";
+    String BACK_SLASH = "\\";
 
-	String COLON = ":";
+    String COLON = ":";
 
-	String COMMA = ",";
+    String COMMA = ",";
 
-	String DASH = "-";
+    String DASH = "-";
 
-	String DOLLAR = "$";
+    String DOLLAR = "$";
 
-	String DOT = ".";
+    String DOT = ".";
 
-	String DOT_DOT = "..";
+    String DOT_DOT = "..";
 
-	String DOT_CLASS = ".class";
+    String DOT_CLASS = ".class";
 
-	String DOT_JAVA = ".java";
+    String DOT_JAVA = ".java";
 
-	String DOT_XML = ".xml";
+    String DOT_XML = ".xml";
 
-	String EMPTY = "";
+    String EMPTY = "";
 
-	String EQUALS = "=";
+    String EQUALS = "=";
 
-	String FALSE = "false";
+    String FALSE = "false";
 
-	String SLASH = "/";
+    String SLASH = "/";
 
-	String HASH = "#";
+    String HASH = "#";
 
-	String HAT = "^";
+    String HAT = "^";
 
-	String LEFT_BRACE = "{";
+    String LEFT_BRACE = "{";
 
-	String RIGHT_BRACE = "}";
+    String RIGHT_BRACE = "}";
 
-	String LEFT_RIGHT_BRACE = "{}";
+    String LEFT_RIGHT_BRACE = "{}";
 
-	String LEFT_BRACKET = "(";
+    String LEFT_BRACKET = "(";
 
-	String RIGHT_BRACKET = ")";
+    String RIGHT_BRACKET = ")";
 
-	String LEFT_RIGHT_BRACKET = "()";
+    String LEFT_RIGHT_BRACKET = "()";
 
-	String LEFT_CHEV = "<";
+    String LEFT_CHEV = "<";
 
-	String RIGHT_CHEV = ">";
+    String RIGHT_CHEV = ">";
 
-	String LEFT_RIGHT_CHEV = "<>";
+    String LEFT_RIGHT_CHEV = "<>";
 
-	String DOT_NEWLINE = ",\n";
+    String DOT_NEWLINE = ",\n";
 
-	String NEWLINE = "\n";
+    String NEWLINE = "\n";
 
-	String N = "n";
+    String N = "n";
 
-	String NO = "no";
+    String NO = "no";
 
-	String NULL = "null";
+    String NULL = "null";
 
-	String NUM = "NUM";
+    String NUM = "NUM";
 
-	String OFF = "off";
+    String OFF = "off";
 
-	String ON = "on";
+    String ON = "on";
 
-	String PERCENT = "%";
+    String PERCENT = "%";
 
-	String PIPE = "|";
+    String PIPE = "|";
 
-	String PLUS = "+";
+    String PLUS = "+";
 
-	String QUESTION_MARK = "?";
+    String QUESTION_MARK = "?";
 
-	String EXCLAMATION_MARK = "!";
+    String EXCLAMATION_MARK = "!";
 
-	String QUOTE = "\"";
+    String QUOTE = "\"";
 
-	String RETURN = "\r";
+    String RETURN = "\r";
 
-	String TAB = "\t";
+    String TAB = "\t";
 
-	String SEMICOLON = ";";
+    String SEMICOLON = ";";
 
-	String SINGLE_QUOTE = "'";
+    String SINGLE_QUOTE = "'";
 
-	String BACKTICK = "`";
+    String BACKTICK = "`";
 
-	String SPACE = " ";
+    String SPACE = " ";
 
-	String SQL = "sql";
+    String SQL = "sql";
 
-	String TILDA = "~";
+    String TILDA = "~";
 
-	String LEFT_SQ_BRACKET = "[";
+    String LEFT_SQ_BRACKET = "[";
 
-	String RIGHT_SQ_BRACKET = "]";
+    String RIGHT_SQ_BRACKET = "]";
 
-	String LEFT_RIGHT_SQ_BRACKET = "[]";
+    String LEFT_RIGHT_SQ_BRACKET = "[]";
 
-	String TRUE = "true";
+    String TRUE = "true";
 
-	String UNDERSCORE = "_";
+    String UNDERSCORE = "_";
 
-	String UTF_8 = "UTF-8";
+    String UTF_8 = "UTF-8";
 
-	String US_ASCII = "US-ASCII";
+    String US_ASCII = "US-ASCII";
 
-	String ISO_8859_1 = "ISO-8859-1";
+    String ISO_8859_1 = "ISO-8859-1";
 
-	String Y = "y";
+    String Y = "y";
 
-	String YES = "yes";
+    String YES = "yes";
 
-	String ONE = "1";
+    String ONE = "1";
 
-	String ZERO = "0";
+    String ZERO = "0";
 
-	String DOLLAR_LEFT_BRACE = "${";
+    String DOLLAR_LEFT_BRACE = "${";
 
-	String HASH_LEFT_BRACE = "#{";
+    String HASH_LEFT_BRACE = "#{";
 
-	String CRLF = "\r\n";
+    String CRLF = "\r\n";
 
-	String HTML_NBSP = "&nbsp;";
+    String HTML_NBSP = "&nbsp;";
 
-	String HTML_AMP = "&amp";
+    String HTML_AMP = "&amp";
 
-	String HTML_QUOTE = "&quot;";
+    String HTML_QUOTE = "&quot;";
 
-	String HTML_LT = "&lt;";
+    String HTML_LT = "&lt;";
 
-	String HTML_GT = "&gt;";
+    String HTML_GT = "&gt;";
 
-	String[] EMPTY_STRING_ARRAY = new String[0];
+    String[] EMPTY_STRING_ARRAY = new String[0];
 
-	byte[] BYTES_NEW_LINE = NEWLINE.getBytes();
+    byte[] BYTES_NEW_LINE = NEWLINE.getBytes();
 
 }

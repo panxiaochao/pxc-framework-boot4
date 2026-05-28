@@ -17,36 +17,36 @@ import lombok.ToString;
 @ToString
 public class Mem {
 
-	/**
-	 * 内存总量, 单位MB
-	 */
-	private long total;
+    /**
+     * 内存总量, 单位MB
+     */
+    private long total;
 
-	/**
-	 * 已用内存, 单位MB
-	 */
-	private long used;
+    /**
+     * 已用内存, 单位MB
+     */
+    private long used;
 
-	/**
-	 * 剩余内存, 单位MB
-	 */
-	private long free;
+    /**
+     * 剩余内存, 单位MB
+     */
+    private long free;
 
-	public long getTotal() {
-		return DataOfSize.ofBytes(total).toMegabytes();
-	}
+    public long getTotal() {
+        return DataOfSize.ofBytes(total).toMegabytes();
+    }
 
-	public long getUsed() {
-		return DataOfSize.ofBytes(used).toMegabytes();
-	}
+    public long getUsed() {
+        return DataOfSize.ofBytes(used).toMegabytes();
+    }
 
-	public long getFree() {
-		return DataOfSize.ofBytes(free).toMegabytes();
-	}
+    public long getFree() {
+        return DataOfSize.ofBytes(free).toMegabytes();
+    }
 
-	public double getUsage() {
-		return ArithmeticUtil.mul(ArithmeticUtil.div(String.valueOf(used), String.valueOf(total), 4), "100")
-			.doubleValue();
-	}
+    public double getUsage() {
+        return ArithmeticUtil.mul(ArithmeticUtil.div(String.valueOf(used), String.valueOf(total), 4), "100")
+            .doubleValue();
+    }
 
 }

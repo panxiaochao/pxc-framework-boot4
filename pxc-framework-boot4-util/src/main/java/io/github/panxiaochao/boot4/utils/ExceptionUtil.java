@@ -20,70 +20,70 @@ import java.util.Objects;
  */
 public class ExceptionUtil {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionUtil.class);
 
-	/**
-	 * 获取报错信息
-	 * @param e Exception
-	 * @return String
-	 */
-	public static String getMessage(Exception e) {
-		StringWriter sw = null;
-		PrintWriter pw = null;
-		try {
-			sw = new StringWriter();
-			pw = new PrintWriter(sw);
-			e.printStackTrace(pw);
-			pw.flush();
-			sw.flush();
-			return sw.toString();
-		}
-		catch (Exception ex) {
-			LOGGER.error("ExceptionUtil is error", ex);
-		}
-		finally {
-			if (pw != null) {
-				pw.close();
-			}
-			if (sw != null) {
-				try {
-					sw.close();
-				}
-				catch (IOException ex) {
-					ex.printStackTrace();
-				}
-			}
-		}
-		return null;
-	}
+    /**
+     * 获取报错信息
+     * @param e Exception
+     * @return String
+     */
+    public static String getMessage(Exception e) {
+        StringWriter sw = null;
+        PrintWriter pw = null;
+        try {
+            sw = new StringWriter();
+            pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            pw.flush();
+            sw.flush();
+            return sw.toString();
+        }
+        catch (Exception ex) {
+            LOGGER.error("ExceptionUtil is error", ex);
+        }
+        finally {
+            if (pw != null) {
+                pw.close();
+            }
+            if (sw != null) {
+                try {
+                    sw.close();
+                }
+                catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
 
-	public static String getAllExceptionMsg(Throwable cause) {
-		StringBuilder strBuilder = new StringBuilder();
-		while (cause != null && !StrUtil.isEmpty(cause.getMessage())) {
-			strBuilder.append("caused: ").append(cause.getMessage()).append(';');
-			cause = cause.getCause();
-		}
+    public static String getAllExceptionMsg(Throwable cause) {
+        StringBuilder strBuilder = new StringBuilder();
+        while (cause != null && !StrUtil.isEmpty(cause.getMessage())) {
+            strBuilder.append("caused: ").append(cause.getMessage()).append(';');
+            cause = cause.getCause();
+        }
 
-		return strBuilder.toString();
-	}
+        return strBuilder.toString();
+    }
 
-	public static Throwable getCause(final Throwable t) {
-		final Throwable cause = t.getCause();
-		if (Objects.isNull(cause)) {
-			return t;
-		}
-		return cause;
-	}
+    public static Throwable getCause(final Throwable t) {
+        final Throwable cause = t.getCause();
+        if (Objects.isNull(cause)) {
+            return t;
+        }
+        return cause;
+    }
 
-	public static String getStackTrace(final Throwable t) {
-		if (t == null) {
-			return "";
-		}
-		final ByteArrayOutputStream out = new ByteArrayOutputStream();
-		final PrintStream ps = new PrintStream(out);
-		t.printStackTrace(ps);
-		ps.flush();
-		return out.toString();
-	}
+    public static String getStackTrace(final Throwable t) {
+        if (t == null) {
+            return "";
+        }
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final PrintStream ps = new PrintStream(out);
+        t.printStackTrace(ps);
+        ps.flush();
+        return out.toString();
+    }
 
 }

@@ -26,109 +26,109 @@ import java.util.List;
 @Schema(name = "数据分页返回响应类", description = "数据分页返回响应类")
 public class RPage<T> {
 
-	/**
-	 * 响应码
-	 */
-	@Schema(description = "响应码")
-	private int code;
+    /**
+     * 响应码
+     */
+    @Schema(description = "响应码")
+    private int code;
 
-	/**
-	 * 响应消息
-	 */
-	@Schema(description = "响应消息")
-	private String message;
+    /**
+     * 响应消息
+     */
+    @Schema(description = "响应消息")
+    private String message;
 
-	/**
-	 * 响应数据
-	 */
-	@Schema(description = "响应数据")
-	private PageResponse<T> data;
+    /**
+     * 响应数据
+     */
+    @Schema(description = "响应数据")
+    private PageResponse<T> data;
 
-	/**
-	 * 成功
-	 * @param <T> 数据类型
-	 * @return 成功的响应
-	 */
-	public static <T> RPage<T> ok() {
-		return ok(null);
-	}
+    /**
+     * 成功
+     * @param <T> 数据类型
+     * @return 成功的响应
+     */
+    public static <T> RPage<T> ok() {
+        return ok(null);
+    }
 
-	/**
-	 * 成功
-	 * @param pageResponse 数据
-	 * @param <T> 数据类型
-	 * @return 成功的响应
-	 */
-	public static <T> RPage<T> ok(PageResponse<T> pageResponse) {
-		return new RPage<>(CommonResponseEnum.OK.getCode(), CommonResponseEnum.OK.getMessage(), pageResponse);
-	}
+    /**
+     * 成功
+     * @param pageResponse 数据
+     * @param <T> 数据类型
+     * @return 成功的响应
+     */
+    public static <T> RPage<T> ok(PageResponse<T> pageResponse) {
+        return new RPage<>(CommonResponseEnum.OK.getCode(), CommonResponseEnum.OK.getMessage(), pageResponse);
+    }
 
-	/**
-	 * 成功
-	 * @param pagination 分页
-	 * @param data 数据
-	 * @param <T> 数据类型
-	 * @return 成功的响应
-	 */
-	public static <T> RPage<T> ok(Pagination pagination, List<T> data) {
-		return new RPage<>(CommonResponseEnum.OK.getCode(), CommonResponseEnum.OK.getMessage(),
-				new PageResponse<>(pagination, data));
-	}
+    /**
+     * 成功
+     * @param pagination 分页
+     * @param data 数据
+     * @param <T> 数据类型
+     * @return 成功的响应
+     */
+    public static <T> RPage<T> ok(Pagination pagination, List<T> data) {
+        return new RPage<>(CommonResponseEnum.OK.getCode(), CommonResponseEnum.OK.getMessage(),
+                new PageResponse<>(pagination, data));
+    }
 
-	/**
-	 * 成功
-	 * @param code 响应码
-	 * @param message 自定义消息
-	 * @param pagination 分页
-	 * @param data 数据
-	 * @param <T> 数据类型
-	 * @return 成功的响应
-	 */
-	public static <T> RPage<T> ok(int code, String message, Pagination pagination, List<T> data) {
-		return new RPage<>(code, message, new PageResponse<>(pagination, data));
-	}
+    /**
+     * 成功
+     * @param code 响应码
+     * @param message 自定义消息
+     * @param pagination 分页
+     * @param data 数据
+     * @param <T> 数据类型
+     * @return 成功的响应
+     */
+    public static <T> RPage<T> ok(int code, String message, Pagination pagination, List<T> data) {
+        return new RPage<>(code, message, new PageResponse<>(pagination, data));
+    }
 
-	/**
-	 * 失败
-	 * @param <T> 数据类型
-	 * @return 失败的响应
-	 */
-	public static <T> RPage<T> fail() {
-		return fail(CommonResponseEnum.INTERNAL_SERVER_ERROR.getCode(),
-				CommonResponseEnum.INTERNAL_SERVER_ERROR.getMessage(), null);
-	}
+    /**
+     * 失败
+     * @param <T> 数据类型
+     * @return 失败的响应
+     */
+    public static <T> RPage<T> fail() {
+        return fail(CommonResponseEnum.INTERNAL_SERVER_ERROR.getCode(),
+                CommonResponseEnum.INTERNAL_SERVER_ERROR.getMessage(), null);
+    }
 
-	/**
-	 * 失败
-	 * @param message 消息
-	 * @param <T> 数据类型
-	 * @return 失败的响应
-	 */
-	public static <T> RPage<T> fail(String message) {
-		return fail(CommonResponseEnum.INTERNAL_SERVER_ERROR.getCode(), message, null);
-	}
+    /**
+     * 失败
+     * @param message 消息
+     * @param <T> 数据类型
+     * @return 失败的响应
+     */
+    public static <T> RPage<T> fail(String message) {
+        return fail(CommonResponseEnum.INTERNAL_SERVER_ERROR.getCode(), message, null);
+    }
 
-	/**
-	 * 失败
-	 * @param message 消息
-	 * @param data 数据
-	 * @param <T> 数据类型
-	 * @return 失败的响应
-	 */
-	public static <T> RPage<T> fail(String message, PageResponse<T> data) {
-		return fail(CommonResponseEnum.INTERNAL_SERVER_ERROR.getCode(), message, data);
-	}
+    /**
+     * 失败
+     * @param message 消息
+     * @param data 数据
+     * @param <T> 数据类型
+     * @return 失败的响应
+     */
+    public static <T> RPage<T> fail(String message, PageResponse<T> data) {
+        return fail(CommonResponseEnum.INTERNAL_SERVER_ERROR.getCode(), message, data);
+    }
 
-	/**
-	 * 失败
-	 * @param code 响应码
-	 * @param message 响应消息
-	 * @param data 数据
-	 * @param <T> 数据类型
-	 * @return 失败的响应
-	 */
-	public static <T> RPage<T> fail(int code, String message, PageResponse<T> data) {
-		return new RPage<T>(code, message, data);
-	}
+    /**
+     * 失败
+     * @param code 响应码
+     * @param message 响应消息
+     * @param data 数据
+     * @param <T> 数据类型
+     * @return 失败的响应
+     */
+    public static <T> RPage<T> fail(int code, String message, PageResponse<T> data) {
+        return new RPage<T>(code, message, data);
+    }
 
 }

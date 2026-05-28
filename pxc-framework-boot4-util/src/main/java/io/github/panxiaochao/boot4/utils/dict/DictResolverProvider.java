@@ -15,32 +15,32 @@ import org.slf4j.LoggerFactory;
  */
 public class DictResolverProvider {
 
-	/**
-	 * LOGGER DictResolverProvider.class
-	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(DictResolverProvider.class);
+    /**
+     * LOGGER DictResolverProvider.class
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(DictResolverProvider.class);
 
-	/**
-	 * 设置字典服务实现，volatile 确保线程安全
-	 */
-	@Setter
-	private static volatile IDictResolver dictResolver;
+    /**
+     * 设置字典服务实现，volatile 确保线程安全
+     */
+    @Setter
+    private static volatile IDictResolver dictResolver;
 
-	/**
-	 * 获取当前字典服务
-	 * @return 字典服务
-	 */
-	public static IDictResolver getDictResolver() {
-		if (dictResolver == null) {
-			synchronized (DictResolverProvider.class) {
-				if (dictResolver == null) {
-					// 默认返回空实现，防止NPE
-					dictResolver = new DefaultDictResolver();
-					LOGGER.info("配置[Dict -> Default]成功！");
-				}
-			}
-		}
-		return dictResolver;
-	}
+    /**
+     * 获取当前字典服务
+     * @return 字典服务
+     */
+    public static IDictResolver getDictResolver() {
+        if (dictResolver == null) {
+            synchronized (DictResolverProvider.class) {
+                if (dictResolver == null) {
+                    // 默认返回空实现，防止NPE
+                    dictResolver = new DefaultDictResolver();
+                    LOGGER.info("配置[Dict -> Default]成功！");
+                }
+            }
+        }
+        return dictResolver;
+    }
 
 }

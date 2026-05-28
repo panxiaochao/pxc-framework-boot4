@@ -21,66 +21,66 @@ import java.util.Base64;
  */
 public class KeyGenerators {
 
-	public static final int DEFAULT_KEY_SIZE = 256;
+    public static final int DEFAULT_KEY_SIZE = 256;
 
-	private KeyGenerators() {
-	}
+    private KeyGenerators() {
+    }
 
-	public static String secretKeyForBase64(Algorithm algorithm) {
-		return Base64.getEncoder().encodeToString(secretKey(algorithm, null));
-	}
+    public static String secretKeyForBase64(Algorithm algorithm) {
+        return Base64.getEncoder().encodeToString(secretKey(algorithm, null));
+    }
 
-	public static String secretKeyForBase64(Algorithm algorithm, String password) {
-		return Base64.getEncoder().encodeToString(secretKey(algorithm, password));
-	}
+    public static String secretKeyForBase64(Algorithm algorithm, String password) {
+        return Base64.getEncoder().encodeToString(secretKey(algorithm, password));
+    }
 
-	public static byte[] secretKey(Algorithm algorithm) {
-		return secretKey(algorithm, null);
-	}
+    public static byte[] secretKey(Algorithm algorithm) {
+        return secretKey(algorithm, null);
+    }
 
-	public static byte[] secretKey(Algorithm algorithm, String password) {
-		try {
-			if (algorithm == null) {
-				throw new IllegalArgumentException("algorithm cannot be null");
-			}
-			if (StringUtils.isBlank(password)) {
-				throw new NullPointerException("密钥不能为空");
-			}
-			KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm.getName());
-			if (StringUtils.isNotBlank(password)) {
-				keyGenerator.init(DEFAULT_KEY_SIZE, new SecureRandom(password.getBytes(StandardCharsets.UTF_8)));
-			}
-			else {
-				keyGenerator.init(DEFAULT_KEY_SIZE);
-			}
-			SecretKey secretKey = keyGenerator.generateKey();
-			return secretKey.getEncoded();
+    public static byte[] secretKey(Algorithm algorithm, String password) {
+        try {
+            if (algorithm == null) {
+                throw new IllegalArgumentException("algorithm cannot be null");
+            }
+            if (StringUtils.isBlank(password)) {
+                throw new NullPointerException("密钥不能为空");
+            }
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm.getName());
+            if (StringUtils.isNotBlank(password)) {
+                keyGenerator.init(DEFAULT_KEY_SIZE, new SecureRandom(password.getBytes(StandardCharsets.UTF_8)));
+            }
+            else {
+                keyGenerator.init(DEFAULT_KEY_SIZE);
+            }
+            SecretKey secretKey = keyGenerator.generateKey();
+            return secretKey.getEncoded();
 
-		}
-		catch (Exception ex) {
-			throw new RuntimeException(ex);
-		}
-	}
+        }
+        catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
-	@AllArgsConstructor
-	@Getter
-	public enum Algorithm {
+    @AllArgsConstructor
+    @Getter
+    public enum Algorithm {
 
-		ALGORITHM_AES("AES"),
+        ALGORITHM_AES("AES"),
 
-		ALGORITHM_DES("DES"),
+        ALGORITHM_DES("DES"),
 
-		ALGORITHM_HMAC_SHA_1("HmacSHA1"),
+        ALGORITHM_HMAC_SHA_1("HmacSHA1"),
 
-		ALGORITHM_HMAC_SHA_256("HmacSHA256"),
+        ALGORITHM_HMAC_SHA_256("HmacSHA256"),
 
-		ALGORITHM_HMAC_SHA_512("HmacSHA512");
+        ALGORITHM_HMAC_SHA_512("HmacSHA512");
 
-		/**
-		 * 算法名字
-		 */
-		private final String name;
+        /**
+         * 算法名字
+         */
+        private final String name;
 
-	}
+    }
 
 }

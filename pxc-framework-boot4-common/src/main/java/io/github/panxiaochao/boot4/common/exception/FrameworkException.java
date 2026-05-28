@@ -16,32 +16,32 @@ import java.io.Serial;
 @Getter
 public class FrameworkException extends Exception {
 
-	@Serial
-	private static final long serialVersionUID = -4367714276298639594L;
+    @Serial
+    private static final long serialVersionUID = -4367714276298639594L;
 
-	/**
-	 * 错误码
-	 */
-	private final int code;
+    /**
+     * 错误码
+     */
+    private final int code;
 
-	public FrameworkException(IEnum<Integer> responseEnum) {
-		super(responseEnum.getMessage());
-		this.code = responseEnum.getCode();
-	}
+    public FrameworkException(IEnum<Integer> responseEnum) {
+        super(responseEnum.getMessage());
+        this.code = responseEnum.getCode();
+    }
 
-	public FrameworkException(IEnum<Integer> responseEnum, String message) {
-		super(message);
-		this.code = responseEnum.getCode();
-	}
+    public FrameworkException(IEnum<Integer> responseEnum, String message) {
+        super(message);
+        this.code = responseEnum.getCode();
+    }
 
-	public FrameworkException(IEnum<Integer> responseEnum, Throwable cause) {
-		super(responseEnum.getMessage(), cause);
-		this.code = responseEnum.getCode();
-	}
+    public FrameworkException(IEnum<Integer> responseEnum, Throwable cause) {
+        super(responseEnum.getMessage(), cause);
+        this.code = responseEnum.getCode();
+    }
 
-	public FrameworkException(IEnum<Integer> responseEnum, String message, Throwable cause) {
-		super(message, cause);
-		this.code = responseEnum.getCode();
-	}
+    public FrameworkException(IEnum<Integer> responseEnum, String message, Throwable cause) {
+        super(message, cause);
+        this.code = responseEnum.getCode();
+    }
 
 }

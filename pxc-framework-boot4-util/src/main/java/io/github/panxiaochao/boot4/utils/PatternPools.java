@@ -13,68 +13,68 @@ import java.util.regex.Pattern;
  */
 public interface PatternPools {
 
-	/**
-	 * 正则表达式：数字
-	 */
-	Pattern NUMBERS = Pattern.compile(RegexPools.NUMBERS);
+    /**
+     * 正则表达式：数字
+     */
+    Pattern NUMBERS = Pattern.compile(RegexPools.NUMBERS);
 
-	/**
-	 * 字母
-	 */
-	Pattern CHARS = Pattern.compile(RegexPools.CHARS);
+    /**
+     * 字母
+     */
+    Pattern CHARS = Pattern.compile(RegexPools.CHARS);
 
-	/**
-	 * QQ号码
-	 */
-	Pattern QQ_NUMBER = Pattern.compile(RegexPools.QQ_NUMBER);
+    /**
+     * QQ号码
+     */
+    Pattern QQ_NUMBER = Pattern.compile(RegexPools.QQ_NUMBER);
 
-	/**
-	 * 邮政编码，兼容港澳台
-	 */
-	Pattern POSTAL_CODE = Pattern.compile(RegexPools.POSTAL_CODE);
+    /**
+     * 邮政编码，兼容港澳台
+     */
+    Pattern POSTAL_CODE = Pattern.compile(RegexPools.POSTAL_CODE);
 
-	/**
-	 * 18位身份证号码
-	 */
-	Pattern CITIZEN_ID = Pattern.compile(RegexPools.CITIZEN_ID);
+    /**
+     * 18位身份证号码
+     */
+    Pattern CITIZEN_ID = Pattern.compile(RegexPools.CITIZEN_ID);
 
-	/**
-	 * 注册账号, 格式：大小写字母、数字、下划线、4-15位
-	 */
-	Pattern ACCOUNT = Pattern.compile(RegexPools.ACCOUNT);
+    /**
+     * 注册账号, 格式：大小写字母、数字、下划线、4-15位
+     */
+    Pattern ACCOUNT = Pattern.compile(RegexPools.ACCOUNT);
 
-	/**
-	 * 密码：包含至少8个字符，包括大写字母、小写字母、数字和特殊字符
-	 */
-	Pattern PASSWORD = Pattern.compile(RegexPools.PASSWORD);
+    /**
+     * 密码：包含至少8个字符，包括大写字母、小写字母、数字和特殊字符
+     */
+    Pattern PASSWORD = Pattern.compile(RegexPools.PASSWORD);
 
-	/**
-	 * 统一社会信用代码
-	 *
-	 * <pre>
-	 * 第一部分：登记管理部门代码1位 (数字或大写英文字母)
-	 * 第二部分：机构类别代码1位 (数字或大写英文字母)
-	 * 第三部分：登记管理机关行政区划码6位 (数字)
-	 * 第四部分：主体标识码（组织机构代码）9位 (数字或大写英文字母)
-	 * 第五部分：校验码1位 (数字或大写英文字母)
-	 * </pre>
-	 */
-	Pattern CREDIT_CODE = Pattern.compile(RegexPools.CREDIT_CODE);
+    /**
+     * 统一社会信用代码
+     *
+     * <pre>
+     * 第一部分：登记管理部门代码1位 (数字或大写英文字母)
+     * 第二部分：机构类别代码1位 (数字或大写英文字母)
+     * 第三部分：登记管理机关行政区划码6位 (数字)
+     * 第四部分：主体标识码（组织机构代码）9位 (数字或大写英文字母)
+     * 第五部分：校验码1位 (数字或大写英文字母)
+     * </pre>
+     */
+    Pattern CREDIT_CODE = Pattern.compile(RegexPools.CREDIT_CODE);
 
-	/**
-	 * 中国车牌号码（兼容新能源车牌）
-	 */
-	Pattern PLATE_NUMBER = Pattern.compile(RegexPools.PLATE_NUMBER);
+    /**
+     * 中国车牌号码（兼容新能源车牌）
+     */
+    Pattern PLATE_NUMBER = Pattern.compile(RegexPools.PLATE_NUMBER);
 
-	/**
-	 * Http URL（来自：<a href="http://urlregex.com/">urlregex</a>）<br>
-	 * 此正则同时支持FTP、File等协议的URL
-	 */
-	Pattern URL_HTTP = Pattern.compile(RegexPools.URL_HTTP);
+    /**
+     * Http URL（来自：<a href="http://urlregex.com/">urlregex</a>）<br>
+     * 此正则同时支持FTP、File等协议的URL
+     */
+    Pattern URL_HTTP = Pattern.compile(RegexPools.URL_HTTP);
 
-	/**
-	 * 邮件，符合RFC 5322规范，正则来自：<a href="http://emailregex.com/">emailregex</a>
-	 */
-	Pattern EMAIL = Pattern.compile(RegexPools.EMAIL);
+    /**
+     * 邮件，符合RFC 5322规范，正则来自：<a href="http://emailregex.com/">emailregex</a>
+     */
+    Pattern EMAIL = Pattern.compile(RegexPools.EMAIL);
 
 }

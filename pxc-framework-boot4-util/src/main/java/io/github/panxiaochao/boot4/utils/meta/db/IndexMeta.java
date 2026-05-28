@@ -20,32 +20,32 @@ import java.util.Objects;
 @Setter
 public class IndexMeta implements Serializable {
 
-	@Serial
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 数据库 表名
-	 */
-	private String tableName;
+    /**
+     * 数据库 表名
+     */
+    private String tableName;
 
-	/**
-	 * 索引值 是否可以不唯一
-	 */
-	private boolean nonUnique;
+    /**
+     * 索引值 是否可以不唯一
+     */
+    private boolean nonUnique;
 
-	/**
-	 * 索引 名称
-	 */
-	private String indexName;
+    /**
+     * 索引 名称
+     */
+    private String indexName;
 
-	/**
-	 * 索引 字段
-	 */
-	private String columnName;
+    /**
+     * 索引 字段
+     */
+    private String columnName;
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(indexName, tableName);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(indexName, tableName);
+    }
 
 }

@@ -10,16 +10,16 @@ package io.github.panxiaochao.boot4.common.enums;
  */
 public interface IEnum<T> {
 
-	/**
-	 * 码值
-	 * @return T类型
-	 */
-	T getCode();
+    /**
+     * 码值
+     * @return T类型
+     */
+    T getCode();
 
-	/**
-	 * 码值对应描述
-	 * @return 返回信息
-	 */
-	String getMessage();
+    /**
+     * 码值对应描述
+     * @return 返回信息
+     */
+    String getMessage();
 
 }

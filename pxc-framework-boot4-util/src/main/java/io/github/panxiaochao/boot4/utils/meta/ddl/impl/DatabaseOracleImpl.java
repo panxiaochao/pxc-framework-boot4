@@ -18,36 +18,36 @@ import java.util.List;
  */
 public class DatabaseOracleImpl implements IDatabase {
 
-	@Override
-	public DatabaseType getDatabaseType() {
-		return DatabaseType.ORACLE;
-	}
+    @Override
+    public DatabaseType getDatabaseType() {
+        return DatabaseType.ORACLE;
+    }
 
-	@Override
-	public String getTableDdl(Connection connection, String schemaName, String tableName) {
-		return "";
-	}
+    @Override
+    public String getTableDdl(Connection connection, String schemaName, String tableName) {
+        return "";
+    }
 
-	@Override
-	public String getViewDdl(Connection connection, String schemaName, String tableName) {
-		return "";
-	}
+    @Override
+    public String getViewDdl(Connection connection, String schemaName, String tableName) {
+        return "";
+    }
 
-	@Override
-	public String generateCreateTableSql(String schemaName, String tableName, String tableComment,
-			List<ColumnMeta> columnMetas) {
-		return "";
-	}
+    @Override
+    public String generateCreateTableSql(String schemaName, String tableName, String tableComment,
+            List<ColumnMeta> columnMetas) {
+        return "";
+    }
 
-	@Override
-	public String getQuotedSchemaTableCombination(String schemaName, String tableName) {
-		return "";
-	}
+    @Override
+    public String getQuotedSchemaTableCombination(String schemaName, String tableName) {
+        return "";
+    }
 
-	@Override
-	public List<String> getTableColumnCommentDefinition(String schemaName, String tableName, String tableComment,
-			List<ColumnMeta> columnMetas) {
-		return List.of();
-	}
+    @Override
+    public List<String> getTableColumnCommentDefinition(String schemaName, String tableName, String tableComment,
+            List<ColumnMeta> columnMetas) {
+        return List.of();
+    }
 
 }

@@ -49,78 +49,78 @@ package io.github.panxiaochao.boot4.utils.unit;
  */
 public enum DataOfUnit {
 
-	/**
-	 * Bytes, represented by suffix {@code B}.
-	 */
-	BYTES("B", DataOfSize.ofBytes(1)),
+    /**
+     * Bytes, represented by suffix {@code B}.
+     */
+    BYTES("B", DataOfSize.ofBytes(1)),
 
-	/**
-	 * Kilobytes, represented by suffix {@code KB}.
-	 */
-	KILOBYTES("KB", DataOfSize.ofKilobytes(1)),
+    /**
+     * Kilobytes, represented by suffix {@code KB}.
+     */
+    KILOBYTES("KB", DataOfSize.ofKilobytes(1)),
 
-	/**
-	 * Megabytes, represented by suffix {@code MB}.
-	 */
-	MEGABYTES("MB", DataOfSize.ofMegabytes(1)),
+    /**
+     * Megabytes, represented by suffix {@code MB}.
+     */
+    MEGABYTES("MB", DataOfSize.ofMegabytes(1)),
 
-	/**
-	 * Gigabytes, represented by suffix {@code GB}.
-	 */
-	GIGABYTES("GB", DataOfSize.ofGigabytes(1)),
+    /**
+     * Gigabytes, represented by suffix {@code GB}.
+     */
+    GIGABYTES("GB", DataOfSize.ofGigabytes(1)),
 
-	/**
-	 * Terabytes, represented by suffix {@code TB}.
-	 */
-	TERABYTES("TB", DataOfSize.ofTerabytes(1)),
+    /**
+     * Terabytes, represented by suffix {@code TB}.
+     */
+    TERABYTES("TB", DataOfSize.ofTerabytes(1)),
 
-	/**
-	 * Petabyte, represented by suffix {@code PB}.
-	 */
-	PETABYTE("PB", DataOfSize.ofPetabyte(1)),
+    /**
+     * Petabyte, represented by suffix {@code PB}.
+     */
+    PETABYTE("PB", DataOfSize.ofPetabyte(1)),
 
-	/**
-	 * Exabyte, represented by suffix {@code EB}.
-	 */
-	EXABYTE("EB", DataOfSize.ofExabyte(1));
+    /**
+     * Exabyte, represented by suffix {@code EB}.
+     */
+    EXABYTE("EB", DataOfSize.ofExabyte(1));
 
-	/**
-	 * Zettabyte, represented by suffix {@code ZB}.
-	 */
-	// ZETTABYTE("ZB", DataOfSize.ofZettabyte(1)),
+    /**
+     * Zettabyte, represented by suffix {@code ZB}.
+     */
+    // ZETTABYTE("ZB", DataOfSize.ofZettabyte(1)),
 
-	/**
-	 * Yottabyte, represented by suffix {@code YB}.
-	 */
-	// YOTTABYTE("YB", DataOfSize.ofYottabyte(1));
+    /**
+     * Yottabyte, represented by suffix {@code YB}.
+     */
+    // YOTTABYTE("YB", DataOfSize.ofYottabyte(1));
 
-	private final String suffix;
+    private final String suffix;
 
-	private final DataOfSize size;
+    private final DataOfSize size;
 
-	DataOfUnit(String suffix, DataOfSize size) {
-		this.suffix = suffix;
-		this.size = size;
-	}
+    DataOfUnit(String suffix, DataOfSize size) {
+        this.suffix = suffix;
+        this.size = size;
+    }
 
-	DataOfSize size() {
-		return this.size;
-	}
+    DataOfSize size() {
+        return this.size;
+    }
 
-	/**
-	 * Return the {@link DataOfUnit} matching the specified {@code suffix}.
-	 * @param suffix one of the standard suffixes
-	 * @return the {@link DataOfUnit} matching the specified {@code suffix}
-	 * @throws IllegalArgumentException if the suffix does not match the suffix of any of
-	 * this enum's constants
-	 */
-	public static DataOfUnit fromSuffix(String suffix) {
-		for (DataOfUnit candidate : values()) {
-			if (candidate.suffix.equalsIgnoreCase(suffix)) {
-				return candidate;
-			}
-		}
-		throw new IllegalArgumentException("Unknown data unit suffix '" + suffix + "'");
-	}
+    /**
+     * Return the {@link DataOfUnit} matching the specified {@code suffix}.
+     * @param suffix one of the standard suffixes
+     * @return the {@link DataOfUnit} matching the specified {@code suffix}
+     * @throws IllegalArgumentException if the suffix does not match the suffix of any of
+     * this enum's constants
+     */
+    public static DataOfUnit fromSuffix(String suffix) {
+        for (DataOfUnit candidate : values()) {
+            if (candidate.suffix.equalsIgnoreCase(suffix)) {
+                return candidate;
+            }
+        }
+        throw new IllegalArgumentException("Unknown data unit suffix '" + suffix + "'");
+    }
 
 }

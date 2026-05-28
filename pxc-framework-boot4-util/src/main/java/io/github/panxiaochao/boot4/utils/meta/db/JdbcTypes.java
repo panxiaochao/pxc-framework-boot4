@@ -18,109 +18,109 @@ import java.util.Map;
 @Getter
 public enum JdbcTypes {
 
-	ARRAY(Types.ARRAY),
+    ARRAY(Types.ARRAY),
 
-	BIT(Types.BIT),
+    BIT(Types.BIT),
 
-	TINYINT(Types.TINYINT),
+    TINYINT(Types.TINYINT),
 
-	SMALLINT(Types.SMALLINT),
+    SMALLINT(Types.SMALLINT),
 
-	INTEGER(Types.INTEGER),
+    INTEGER(Types.INTEGER),
 
-	BIGINT(Types.BIGINT),
+    BIGINT(Types.BIGINT),
 
-	FLOAT(Types.FLOAT),
+    FLOAT(Types.FLOAT),
 
-	REAL(Types.REAL),
+    REAL(Types.REAL),
 
-	DOUBLE(Types.DOUBLE),
+    DOUBLE(Types.DOUBLE),
 
-	NUMERIC(Types.NUMERIC),
+    NUMERIC(Types.NUMERIC),
 
-	DECIMAL(Types.DECIMAL),
+    DECIMAL(Types.DECIMAL),
 
-	CHAR(Types.CHAR),
+    CHAR(Types.CHAR),
 
-	VARCHAR(Types.VARCHAR),
+    VARCHAR(Types.VARCHAR),
 
-	LONGVARCHAR(Types.LONGVARCHAR),
+    LONGVARCHAR(Types.LONGVARCHAR),
 
-	DATE(Types.DATE),
+    DATE(Types.DATE),
 
-	TIME(Types.TIME),
+    TIME(Types.TIME),
 
-	TIMESTAMP(Types.TIMESTAMP),
+    TIMESTAMP(Types.TIMESTAMP),
 
-	BINARY(Types.BINARY),
+    BINARY(Types.BINARY),
 
-	VARBINARY(Types.VARBINARY),
+    VARBINARY(Types.VARBINARY),
 
-	LONGVARBINARY(Types.LONGVARBINARY),
+    LONGVARBINARY(Types.LONGVARBINARY),
 
-	NULL(Types.NULL),
+    NULL(Types.NULL),
 
-	OTHER(Types.OTHER),
+    OTHER(Types.OTHER),
 
-	BLOB(Types.BLOB),
+    BLOB(Types.BLOB),
 
-	CLOB(Types.CLOB),
+    CLOB(Types.CLOB),
 
-	BOOLEAN(Types.BOOLEAN),
-	// Oracle
-	CURSOR(-10),
+    BOOLEAN(Types.BOOLEAN),
+    // Oracle
+    CURSOR(-10),
 
-	UNDEFINED(Integer.MIN_VALUE + 1000),
-	// JDK6
-	NVARCHAR(Types.NVARCHAR),
-	// JDK6
-	NCHAR(Types.NCHAR),
-	// JDK6
-	NCLOB(Types.NCLOB),
+    UNDEFINED(Integer.MIN_VALUE + 1000),
+    // JDK6
+    NVARCHAR(Types.NVARCHAR),
+    // JDK6
+    NCHAR(Types.NCHAR),
+    // JDK6
+    NCLOB(Types.NCLOB),
 
-	STRUCT(Types.STRUCT),
+    STRUCT(Types.STRUCT),
 
-	JAVA_OBJECT(Types.JAVA_OBJECT),
+    JAVA_OBJECT(Types.JAVA_OBJECT),
 
-	DISTINCT(Types.DISTINCT),
+    DISTINCT(Types.DISTINCT),
 
-	REF(Types.REF),
+    REF(Types.REF),
 
-	DATALINK(Types.DATALINK),
-	// JDK6
-	ROWID(Types.ROWID),
+    DATALINK(Types.DATALINK),
+    // JDK6
+    ROWID(Types.ROWID),
 
-	LONGNVARCHAR(Types.LONGNVARCHAR),
-	// JDK6
-	SQLXML(Types.SQLXML),
-	// SQL Server 2008
-	DATETIMEOFFSET(-155),
-	// JDBC 4.2 JDK8
-	TIME_WITH_TIMEZONE(Types.TIME_WITH_TIMEZONE),
-	// JDBC 4.2 JDK8
-	TIMESTAMP_WITH_TIMEZONE(Types.TIMESTAMP_WITH_TIMEZONE);
+    LONGNVARCHAR(Types.LONGNVARCHAR),
+    // JDK6
+    SQLXML(Types.SQLXML),
+    // SQL Server 2008
+    DATETIMEOFFSET(-155),
+    // JDBC 4.2 JDK8
+    TIME_WITH_TIMEZONE(Types.TIME_WITH_TIMEZONE),
+    // JDBC 4.2 JDK8
+    TIMESTAMP_WITH_TIMEZONE(Types.TIMESTAMP_WITH_TIMEZONE);
 
-	public final int typeCode;
+    public final int typeCode;
 
-	private static final Map<Integer, JdbcTypes> CODE_LOOKUP = new HashMap<>();
+    private static final Map<Integer, JdbcTypes> CODE_LOOKUP = new HashMap<>();
 
-	static {
-		for (JdbcTypes type : JdbcTypes.values()) {
-			CODE_LOOKUP.put(type.typeCode, type);
-		}
-	}
+    static {
+        for (JdbcTypes type : JdbcTypes.values()) {
+            CODE_LOOKUP.put(type.typeCode, type);
+        }
+    }
 
-	JdbcTypes(int code) {
-		this.typeCode = code;
-	}
+    JdbcTypes(int code) {
+        this.typeCode = code;
+    }
 
-	/**
-	 * 通过{@link Types}中对应int值找到enum值
-	 * @param code Jdbc type值
-	 * @return {@code JdbcTypes}
-	 */
-	public static JdbcTypes ofCode(int code) {
-		return CODE_LOOKUP.get(code);
-	}
+    /**
+     * 通过{@link Types}中对应int值找到enum值
+     * @param code Jdbc type值
+     * @return {@code JdbcTypes}
+     */
+    public static JdbcTypes ofCode(int code) {
+        return CODE_LOOKUP.get(code);
+    }
 
 }

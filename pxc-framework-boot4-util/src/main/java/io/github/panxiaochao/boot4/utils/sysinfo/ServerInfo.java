@@ -18,34 +18,34 @@ import java.util.List;
 @Setter
 public class ServerInfo {
 
-	/**
-	 * CPU 相关信息
-	 */
-	private Cpu cpu = new Cpu();
+    /**
+     * CPU 相关信息
+     */
+    private Cpu cpu = new Cpu();
 
-	/**
-	 * 內存 相关信息
-	 */
-	private Mem mem = new Mem();
+    /**
+     * 內存 相关信息
+     */
+    private Mem mem = new Mem();
 
-	/**
-	 * JVM 相关信息
-	 */
-	private Jvm jvm = new Jvm();
+    /**
+     * JVM 相关信息
+     */
+    private Jvm jvm = new Jvm();
 
-	/**
-	 * 服务器 相关信息
-	 */
-	private SysInfo sys = new SysInfo();
+    /**
+     * 服务器 相关信息
+     */
+    private SysInfo sys = new SysInfo();
 
-	/**
-	 * 磁盘存储 相关信息
-	 */
-	private DiskInfo diskInfo = new DiskInfo();
+    /**
+     * 磁盘存储 相关信息
+     */
+    private DiskInfo diskInfo = new DiskInfo();
 
-	/**
-	 * 磁盘文件 相关信息
-	 */
-	private List<DiskInfo> diskInfos = new LinkedList<>();
+    /**
+     * 磁盘文件 相关信息
+     */
+    private List<DiskInfo> diskInfos = new LinkedList<>();
 
 }

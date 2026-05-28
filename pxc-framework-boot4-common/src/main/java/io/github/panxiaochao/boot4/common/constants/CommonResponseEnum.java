@@ -16,72 +16,72 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CommonResponseEnum implements IResponseEnum<Integer> {
 
-	/**
-	 * 成功, 兼容 {code: 0} 的情况
-	 */
-	OK_0(0, "成功"),
+    /**
+     * 成功, 兼容 {code: 0} 的情况
+     */
+    OK_0(0, "成功"),
 
-	/**
-	 * 成功
-	 */
-	OK(200, "成功"),
+    /**
+     * 成功
+     */
+    OK(200, "成功"),
 
-	/**
-	 * 错误请求
-	 */
-	BAD_REQUEST(400, "错误请求"),
+    /**
+     * 错误请求
+     */
+    BAD_REQUEST(400, "错误请求"),
 
-	/**
-	 * 未授权
-	 */
-	UNAUTHORIZED(401, "未授权"),
+    /**
+     * 未授权
+     */
+    UNAUTHORIZED(401, "未授权"),
 
-	/**
-	 *
-	 */
-	FORBIDDEN(403, "禁止执行访问"),
+    /**
+     *
+     */
+    FORBIDDEN(403, "禁止执行访问"),
 
-	/**
-	 * 资源不存在
-	 */
-	NOT_FOUND(404, "资源不存在"),
+    /**
+     * 资源不存在
+     */
+    NOT_FOUND(404, "资源不存在"),
 
-	/**
-	 * 请求方式错误
-	 */
-	METHOD_NOT_ALLOWED(405, "请求方式错误"),
+    /**
+     * 请求方式错误
+     */
+    METHOD_NOT_ALLOWED(405, "请求方式错误"),
 
-	/**
-	 * 服务器忙，请稍候重试
-	 */
-	INTERNAL_SERVER_ERROR(500, "服务器异常，请联系管理员"),
+    /**
+     * 服务器忙，请稍候重试
+     */
+    INTERNAL_SERVER_ERROR(500, "服务器异常，请联系管理员"),
 
-	/**
-	 * 错误网关
-	 */
-	BAD_GATEWAY(502, "错误网关"),
+    /**
+     * 错误网关
+     */
+    BAD_GATEWAY(502, "错误网关"),
 
-	/**
-	 * 服务不可用
-	 */
-	SERVICE_UNAVAILABLE(503, "服务不可用"),
+    /**
+     * 服务不可用
+     */
+    SERVICE_UNAVAILABLE(503, "服务不可用"),
 
-	/**
-	 * 网关超时
-	 */
-	GATEWAY_TIMEOUT(504, "网关超时");
+    /**
+     * 网关超时
+     */
+    GATEWAY_TIMEOUT(504, "网关超时");
 
-	private final Integer code;
+    private final Integer code;
 
-	private final String message;
+    private final String message;
 
-	public String getMessageByCode(Integer code) {
-		for (CommonResponseEnum value : CommonResponseEnum.values()) {
-			if (value.getCode().equals(code)) {
-				return value.getMessage();
-			}
-		}
-		return "";
-	}
+    public String getMessageByCode(Integer code) {
+        for (CommonResponseEnum value : CommonResponseEnum.values()) {
+            if (value.getCode().equals(code)) {
+                return value.getMessage();
+            }
+        }
+        return "";
+    }
 
 }

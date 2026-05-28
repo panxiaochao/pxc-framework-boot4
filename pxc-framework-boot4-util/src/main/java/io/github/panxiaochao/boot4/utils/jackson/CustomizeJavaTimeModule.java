@@ -1,7 +1,8 @@
 package io.github.panxiaochao.boot4.utils.jackson;
 
 import io.github.panxiaochao.boot4.utils.date.DatePattern;
-import io.github.panxiaochao.boot4.utils.jackson.jsonserializer.BigNumberSerializer;
+import io.github.panxiaochao.boot4.utils.jackson.serializer.BigNumberSerializer;
+import io.github.panxiaochao.boot4.utils.jackson.serializer.NullValueJsonSerializer;
 import tools.jackson.core.json.PackageVersion;
 import tools.jackson.databind.ext.javatime.deser.DurationDeserializer;
 import tools.jackson.databind.ext.javatime.deser.InstantDeserializer;
@@ -40,48 +41,50 @@ import java.time.YearMonth;
  */
 public class CustomizeJavaTimeModule extends SimpleModule {
 
-	@Serial
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	public CustomizeJavaTimeModule() {
-		super(PackageVersion.VERSION);
-		// ====== Serialize ======
-		// yyyy
-		this.addSerializer(Year.class, new YearSerializer(DatePattern.NORMAL_YEAR_FORMATTER));
-		// yyyy-MM
-		this.addSerializer(YearMonth.class, new YearMonthSerializer(DatePattern.NORMAL_YEAR_MONTH_FORMATTER));
-		// yyyy-MM-dd HH:mm:ss
-		this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DatePattern.NORMAL_DATE_TIME_FORMATTER));
-		// yyyy-MM-dd
-		this.addSerializer(LocalDate.class, new LocalDateSerializer(DatePattern.NORMAL_DATE_FORMATTER));
-		// HH:mm:ss
-		this.addSerializer(LocalTime.class, new LocalTimeSerializer(DatePattern.NORMAL_TIME_FORMATTER));
-		// Instant 时间戳
-		this.addSerializer(Instant.class, InstantSerializer.INSTANCE);
-		// Duration 类型
-		this.addSerializer(Duration.class, DurationSerializer.INSTANCE);
-		// 数值型
-		this.addSerializer(Long.class, BigNumberSerializer.INSTANCE);
-		this.addSerializer(Long.TYPE, BigNumberSerializer.INSTANCE);
-		this.addSerializer(BigInteger.class, BigNumberSerializer.INSTANCE);
-		this.addSerializer(BigDecimal.class, BigNumberSerializer.INSTANCE);
+    public CustomizeJavaTimeModule() {
+        super(PackageVersion.VERSION);
+        // ====== Serialize ======
+        // yyyy
+        this.addSerializer(Year.class, new YearSerializer(DatePattern.NORMAL_YEAR_FORMATTER));
+        // yyyy-MM
+        this.addSerializer(YearMonth.class, new YearMonthSerializer(DatePattern.NORMAL_YEAR_MONTH_FORMATTER));
+        // yyyy-MM-dd HH:mm:ss
+        this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DatePattern.NORMAL_DATE_TIME_FORMATTER));
+        // yyyy-MM-dd
+        this.addSerializer(LocalDate.class, new LocalDateSerializer(DatePattern.NORMAL_DATE_FORMATTER));
+        // HH:mm:ss
+        this.addSerializer(LocalTime.class, new LocalTimeSerializer(DatePattern.NORMAL_TIME_FORMATTER));
+        // Instant 时间戳
+        this.addSerializer(Instant.class, InstantSerializer.INSTANCE);
+        // Duration 类型
+        this.addSerializer(Duration.class, DurationSerializer.INSTANCE);
+        // 数值型
+        this.addSerializer(Long.class, BigNumberSerializer.INSTANCE);
+        this.addSerializer(Long.TYPE, BigNumberSerializer.INSTANCE);
+        this.addSerializer(BigInteger.class, BigNumberSerializer.INSTANCE);
+        this.addSerializer(BigDecimal.class, BigNumberSerializer.INSTANCE);
+        // 空值处理
+        this.addSerializer(NullValueJsonSerializer.INSTANCE);
 
-		// ====== Deserialize ======
-		// yyyy
-		this.addDeserializer(Year.class, new YearDeserializer(DatePattern.NORMAL_YEAR_FORMATTER));
-		// yyyy-MM
-		this.addDeserializer(YearMonth.class, new YearMonthDeserializer(DatePattern.NORMAL_YEAR_MONTH_FORMATTER));
-		// yyyy-MM-dd HH:mm:ss
-		this.addDeserializer(LocalDateTime.class,
-				new LocalDateTimeDeserializer(DatePattern.NORMAL_DATE_TIME_FORMATTER));
-		// yyyy-MM-dd
-		this.addDeserializer(LocalDate.class, new LocalDateDeserializer(DatePattern.NORMAL_DATE_FORMATTER));
-		// HH:mm:ss
-		this.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DatePattern.NORMAL_TIME_FORMATTER));
-		// Instant 时间戳
-		this.addDeserializer(Instant.class, InstantDeserializer.INSTANT);
-		// Duration 类型
-		this.addDeserializer(Duration.class, DurationDeserializer.INSTANCE);
-	}
+        // ====== Deserialize ======
+        // yyyy
+        this.addDeserializer(Year.class, new YearDeserializer(DatePattern.NORMAL_YEAR_FORMATTER));
+        // yyyy-MM
+        this.addDeserializer(YearMonth.class, new YearMonthDeserializer(DatePattern.NORMAL_YEAR_MONTH_FORMATTER));
+        // yyyy-MM-dd HH:mm:ss
+        this.addDeserializer(LocalDateTime.class,
+                new LocalDateTimeDeserializer(DatePattern.NORMAL_DATE_TIME_FORMATTER));
+        // yyyy-MM-dd
+        this.addDeserializer(LocalDate.class, new LocalDateDeserializer(DatePattern.NORMAL_DATE_FORMATTER));
+        // HH:mm:ss
+        this.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DatePattern.NORMAL_TIME_FORMATTER));
+        // Instant 时间戳
+        this.addDeserializer(Instant.class, InstantDeserializer.INSTANT);
+        // Duration 类型
+        this.addDeserializer(Duration.class, DurationDeserializer.INSTANCE);
+    }
 
 }

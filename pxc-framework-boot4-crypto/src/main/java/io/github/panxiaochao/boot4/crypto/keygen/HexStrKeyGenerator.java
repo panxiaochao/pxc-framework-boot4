@@ -13,18 +13,18 @@ import io.github.panxiaochao.boot4.crypto.utils.HexUtil;
  */
 public class HexStrKeyGenerator implements StrKeyGenerator {
 
-	private final BytesKeyGenerator keyGenerator;
+    private final BytesKeyGenerator keyGenerator;
 
-	HexStrKeyGenerator(BytesKeyGenerator keyGenerator) {
-		this.keyGenerator = keyGenerator;
-	}
+    HexStrKeyGenerator(BytesKeyGenerator keyGenerator) {
+        this.keyGenerator = keyGenerator;
+    }
 
-	/**
-	 * Generate a new key.
-	 */
-	@Override
-	public String generateKey() {
-		return HexUtil.encode(this.keyGenerator.generateKey());
-	}
+    /**
+     * Generate a new key.
+     */
+    @Override
+    public String generateKey() {
+        return HexUtil.encode(this.keyGenerator.generateKey());
+    }
 
 }
