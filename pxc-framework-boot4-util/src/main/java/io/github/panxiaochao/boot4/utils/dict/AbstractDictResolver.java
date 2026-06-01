@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  */
 public abstract class AbstractDictResolver implements IDictResolver {
 
-    public static final String CACHE_KEY_PREFIX = "pxc-framework-boot3:cache:dict:";
+    public static final String CACHE_KEY_PREFIX = "pxc-framework-boot4:cache:dict:";
 
     @Override
     public String getDictText(String dictCode, String dictValue, String separator) {

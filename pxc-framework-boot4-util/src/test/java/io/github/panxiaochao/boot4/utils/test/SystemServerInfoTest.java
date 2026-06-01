@@ -1,0 +1,20 @@
+package io.github.panxiaochao.boot4.utils.test;
+
+import io.github.panxiaochao.boot4.utils.SystemServerUtil;
+
+/**
+ * <p>
+ * SystemServerInfoTest 系统信息测试类
+ * </p>
+ *
+ * @author lypxc
+ * @since 2025-06-12
+ * @version 1.0
+ */
+public class SystemServerInfoTest {
+
+    public static void main(String[] args) {
+        System.out.println(SystemServerUtil.ofCpuInfo());
+    }
+
+}
