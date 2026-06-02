@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "spring.pxc-framework-boot4", ignoreInvalidFields = true)
-public class WebProperties {
+public class GlobalWebProperties {
 
     /**
      * Xss 配置
@@ -48,6 +49,39 @@ public class WebProperties {
          * 是否开启 跨域Cors
          */
         private Boolean enabled;
+
+        /**
+         * 是否允许携带凭证。
+         */
+        private String allowCredentials = "true";
+
+        /**
+         * 是否允许所有来源。
+         */
+        private String allowAllOrigin = "*";
+
+        /**
+         * 允许的前端请求头。
+         */
+        private String allowedHeaders = "*";
+
+        /**
+         * 允许的后端响应头。
+         */
+        private String exposeHeaders = String.join(",",
+                Arrays.asList("Content-Disposition", "Content-Length", "Content-Type", "Cache-Control", "Expires",
+                        "Content-Language", "Last-Modified", "Pragma", "Authorization"));
+
+        /**
+         * 允许的请求方法。
+         */
+        private String allowedMethods = String.join(",",
+                Arrays.asList("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE", "PATCH"));
+
+        /**
+         * 预检请求缓存时间，单位秒。
+         */
+        private String maxAge = "3600";
 
     }
 

@@ -7,7 +7,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
@@ -51,7 +51,7 @@ public class XssFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String requestUrl = request.getRequestURI();
         if (HttpMethod.OPTIONS.toString().equals(request.getMethod())
-                || StringUtils.endsWithAny(requestUrl, WHITE_SUFFIXES)
+                || Strings.CS.endsWithAny(requestUrl, WHITE_SUFFIXES)
                 || excludeUrls.stream().anyMatch(excludeUrl -> PATHMATCHER.match(excludeUrl, requestUrl))) {
             filterChain.doFilter(request, response);
         }

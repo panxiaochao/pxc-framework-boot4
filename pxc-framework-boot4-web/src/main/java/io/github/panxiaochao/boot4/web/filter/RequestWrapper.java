@@ -5,6 +5,7 @@ import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +14,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
@@ -39,17 +39,15 @@ public class RequestWrapper extends HttpServletRequestWrapper {
     /**
      * Constructs a request object wrapping the given request.
      * @param request The request to wrap
+     * @param response The response to wrap
      * @throws IllegalArgumentException if the request is null
      */
-    public RequestWrapper(HttpServletRequest request) {
+    public RequestWrapper(HttpServletRequest request, HttpServletResponse response) {
         super(request);
-        try {
-            request.setCharacterEncoding(DEFAULT_CHARSET.name());
-            bodyBytes = getBodyBytes(request);
-        }
-        catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        request.setCharacterEncoding(DEFAULT_CHARSET);
+        response.setCharacterEncoding(DEFAULT_CHARSET);
+
+        bodyBytes = getBodyBytes(request);
     }
 
     /**
@@ -122,11 +120,21 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         return sb.toString();
     }
 
+    /**
+     * 基于缓存的请求体构造字符读取器。
+     * @return 可重复读取的字符流
+     * @throws IOException IO 异常
+     */
     @Override
     public BufferedReader getReader() throws IOException {
-        return new BufferedReader(new InputStreamReader(getInputStream()));
+        return new BufferedReader(new InputStreamReader(getInputStream(), DEFAULT_CHARSET));
     }
 
+    /**
+     * 返回基于缓存请求体重新生成的输入流。
+     * @return 可重复读取的输入流
+     * @throws IOException IO 异常
+     */
     @Override
     public ServletInputStream getInputStream() throws IOException {
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bodyBytes);
@@ -143,12 +151,12 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 
             @Override
             public boolean isFinished() {
-                return false;
+                return byteArrayInputStream.available() == 0;
             }
 
             @Override
             public boolean isReady() {
-                return false;
+                return true;
             }
 
             @Override

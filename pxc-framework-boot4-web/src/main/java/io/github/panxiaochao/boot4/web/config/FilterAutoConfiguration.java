@@ -1,6 +1,6 @@
 package io.github.panxiaochao.boot4.web.config;
 
-import io.github.panxiaochao.boot4.web.config.properties.WebProperties;
+import io.github.panxiaochao.boot4.web.config.properties.GlobalWebProperties;
 import io.github.panxiaochao.boot4.web.filter.CorsFilter;
 import io.github.panxiaochao.boot4.web.filter.EncodingFilter;
 import io.github.panxiaochao.boot4.web.filter.RequestWrapperFilter;
@@ -8,9 +8,9 @@ import io.github.panxiaochao.boot4.web.filter.XssFilter;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.Ordered;
 
 /**
  * <p>
@@ -24,7 +24,7 @@ import org.springframework.core.Ordered;
  * @since 2023-06-26
  */
 @AutoConfiguration
-@EnableConfigurationProperties({ WebProperties.class })
+@EnableConfigurationProperties({ GlobalWebProperties.class })
 public class FilterAutoConfiguration {
 
     /**
@@ -32,13 +32,9 @@ public class FilterAutoConfiguration {
      * @return FilterRegistrationBean
      */
     @Bean
-    public FilterRegistrationBean<EncodingFilter> encodingFilter() {
-        FilterRegistrationBean<EncodingFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new EncodingFilter());
-        registrationBean.addUrlPatterns("/*");
-        registrationBean.addServletNames("encodingFilter");
-        registrationBean.setOrder(0);
-        return registrationBean;
+    @FilterRegistration(name = "encodingFilter", urlPatterns = "/*", order = 0)
+    public EncodingFilter encodingFilter() {
+        return new EncodingFilter();
     }
 
     /**
@@ -47,13 +43,9 @@ public class FilterAutoConfiguration {
      */
     @Bean
     @ConditionalOnProperty(name = "spring.pxc-framework-boot4.cors.enabled", havingValue = "true")
-    public FilterRegistrationBean<CorsFilter> corsFilter() {
-        FilterRegistrationBean<CorsFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new CorsFilter());
-        registrationBean.addUrlPatterns("/*");
-        registrationBean.addServletNames("corsFilter");
-        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        return registrationBean;
+    @FilterRegistration(name = "corsFilter", urlPatterns = "/*", order = FilterRegistrationBean.HIGHEST_PRECEDENCE)
+    public CorsFilter corsFilter(GlobalWebProperties globalWebProperties) {
+        return new CorsFilter(globalWebProperties);
     }
 
     /**
@@ -61,13 +53,9 @@ public class FilterAutoConfiguration {
      * @return FilterRegistrationBean
      */
     @Bean
-    public FilterRegistrationBean<RequestWrapperFilter> requestWrapperFilter() {
-        FilterRegistrationBean<RequestWrapperFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new RequestWrapperFilter());
-        registrationBean.addUrlPatterns("/*");
-        registrationBean.addServletNames("requestWrapperFilter");
-        registrationBean.setOrder(1);
-        return registrationBean;
+    @FilterRegistration(name = "requestWrapperFilter", urlPatterns = "/*", order = 1)
+    public RequestWrapperFilter requestWrapperFilter() {
+        return new RequestWrapperFilter();
     }
 
     /**
@@ -76,13 +64,9 @@ public class FilterAutoConfiguration {
      */
     @Bean
     @ConditionalOnProperty(name = "spring.pxc-framework-boot4.xss.enabled", havingValue = "true")
-    public FilterRegistrationBean<XssFilter> xssFilter(WebProperties webProperties) {
-        FilterRegistrationBean<XssFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new XssFilter(webProperties.getXss().getExcludeUrls()));
-        registrationBean.addUrlPatterns("/*");
-        registrationBean.addServletNames("xssFilter");
-        registrationBean.setOrder(2);
-        return registrationBean;
+    @FilterRegistration(name = "xssFilter", urlPatterns = "/*", order = 2)
+    public XssFilter xssFilter(GlobalWebProperties globalWebProperties) {
+        return new XssFilter(globalWebProperties.getXss().getExcludeUrls());
     }
 
 }

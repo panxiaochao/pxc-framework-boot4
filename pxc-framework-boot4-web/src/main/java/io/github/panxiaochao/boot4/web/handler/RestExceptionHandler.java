@@ -4,9 +4,11 @@ import io.github.panxiaochao.boot4.common.constants.CommonResponseEnum;
 import io.github.panxiaochao.boot4.common.exception.FrameworkException;
 import io.github.panxiaochao.boot4.common.exception.FrameworkRuntimeException;
 import io.github.panxiaochao.boot4.common.response.R;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.json.JsonParseException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -126,6 +128,16 @@ public class RestExceptionHandler {
             msg.append(error.getDefaultMessage() == null ? "" : error.getDefaultMessage());
         }
         return R.fail(CommonResponseEnum.INTERNAL_SERVER_ERROR.getCode(), msg.substring(2));
+    }
+
+    /**
+     * JSON 解析异常（Jackson 在处理 JSON 格式出错时抛出） 可能是请求体格式非法，也可能是服务端反序列化失败
+     */
+    @ExceptionHandler(JsonParseException.class)
+    public R<Void> handleJsonParseException(JsonParseException e, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        LOG.error("请求地址'{}' 发生 JSON 解析异常: {}", requestURI, e.getMessage());
+        return R.fail("请求数据格式错误");
     }
 
 }

@@ -7,13 +7,14 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 
 /**
  * <p>
- * RequestWrapper过滤器
+ * 构建可重复读取输入流的请求包装器.
  * </p>
  *
  * @author Lypxc
@@ -27,17 +28,18 @@ public class RequestWrapperFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String contentType = request.getContentType();
-        // 判断请求类型
+        // 请求类型为空的放过请求
         if (!StringUtils.hasText(contentType)) {
             filterChain.doFilter(request, response);
         }
         // fix: 请求类型是表单提交的放过
-        else if (StringUtils.hasText(contentType) && contentType.contains("multipart/form-data")) {
+        else if (StringUtils.hasText(contentType)
+                && StringUtils.startsWithIgnoreCase(contentType, MediaType.MULTIPART_FORM_DATA_VALUE)) {
             filterChain.doFilter(request, response);
         }
         else {
             // 重新包装 Request Wrapper
-            request = new RequestWrapper(request);
+            request = new RequestWrapper(request, response);
             if (null == request) {
                 filterChain.doFilter(servletRequest, response);
             }
