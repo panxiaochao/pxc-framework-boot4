@@ -3,6 +3,7 @@ package io.github.panxiaochao.boot4.jackson.config;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.panxiaochao.boot4.utils.date.DatePattern;
 import io.github.panxiaochao.boot4.utils.jackson.CustomizeJavaTimeModule;
+import io.github.panxiaochao.boot4.utils.jackson.serializer.NullValueJacksonSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -55,18 +56,25 @@ public class Jackson3AutoConfiguration {
     @Bean
     public JsonMapperBuilderCustomizer jsonMapperBuilderCustomizer() {
         LOGGER.info("配置[JsonMapper]成功！");
-        return builder -> builder.defaultLocale(Locale.CHINA)
-            // 所有字段全部展现
-            .changeDefaultPropertyInclusion(value -> JsonInclude.Value.ALL_ALWAYS)
-            .defaultTimeZone(TimeZone.getTimeZone("Asia/Shanghai"))
-            .defaultDateFormat(new SimpleDateFormat(DatePattern.NORMAL_DATE_TIME_PATTERN))
-            // 忽略空Bean转json的错误
-            .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
-            // 忽略未知属性
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-            // 时间格式化处理
-            .addModule(new CustomizeJavaTimeModule())
-            .build();
+        //@formatter:off
+        return jsonMapperBuilder ->
+                jsonMapperBuilder.defaultLocale(Locale.CHINA)
+                    // 所有字段全部展现
+                    .changeDefaultPropertyInclusion(value -> JsonInclude.Value.ALL_ALWAYS)
+                    .defaultTimeZone(TimeZone.getTimeZone("Asia/Shanghai"))
+                    .defaultDateFormat(new SimpleDateFormat(DatePattern.NORMAL_DATE_TIME_PATTERN))
+                    // 忽略空Bean转json的错误
+                    .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+                    // 忽略未知属性
+                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                    // 时间格式化处理
+                    .addModule(new CustomizeJavaTimeModule())
+                    // 空值处理
+                    .serializerFactory(
+                            jsonMapperBuilder.serializerFactory()
+                                    .withNullValueSerializer(NullValueJacksonSerializer.INSTANCE)
+                    );
+        //@formatter:on
     }
 
 }

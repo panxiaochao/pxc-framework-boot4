@@ -3,6 +3,7 @@ package io.github.panxiaochao.boot4.utils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.panxiaochao.boot4.utils.date.DatePattern;
 import io.github.panxiaochao.boot4.utils.jackson.CustomizeJavaTimeModule;
+import io.github.panxiaochao.boot4.utils.jackson.serializer.NullValueJacksonSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tools.jackson.core.JacksonException;
@@ -15,6 +16,7 @@ import tools.jackson.databind.json.JsonMapper;
 import tools.jackson.databind.jsontype.NamedType;
 import tools.jackson.databind.node.ArrayNode;
 import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.ser.BeanSerializerFactory;
 
 import java.io.InputStream;
 import java.lang.reflect.Type;
@@ -74,6 +76,9 @@ public class JacksonUtil {
             // 开启严格模式，用于在反序列化 JSON 时，默认true
             // 若解析完目标对象后输入流中仍有额外字符（如多余逗号、括号、文本等），则抛出JsonParseException
             .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+            // NULL 值处理
+            .serializerFactory(
+                    BeanSerializerFactory.instance.withNullValueSerializer(NullValueJacksonSerializer.INSTANCE))
             .build();
     }
 

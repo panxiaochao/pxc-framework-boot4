@@ -2,7 +2,6 @@ package io.github.panxiaochao.boot4.utils.jackson;
 
 import io.github.panxiaochao.boot4.utils.date.DatePattern;
 import io.github.panxiaochao.boot4.utils.jackson.serializer.BigNumberSerializer;
-import io.github.panxiaochao.boot4.utils.jackson.serializer.NullValueJsonSerializer;
 import tools.jackson.core.json.PackageVersion;
 import tools.jackson.databind.ext.javatime.deser.DurationDeserializer;
 import tools.jackson.databind.ext.javatime.deser.InstantDeserializer;
@@ -66,8 +65,6 @@ public class CustomizeJavaTimeModule extends SimpleModule {
         this.addSerializer(Long.TYPE, BigNumberSerializer.INSTANCE);
         this.addSerializer(BigInteger.class, BigNumberSerializer.INSTANCE);
         this.addSerializer(BigDecimal.class, BigNumberSerializer.INSTANCE);
-        // 空值处理
-        this.addSerializer(NullValueJsonSerializer.INSTANCE);
 
         // ====== Deserialize ======
         // yyyy

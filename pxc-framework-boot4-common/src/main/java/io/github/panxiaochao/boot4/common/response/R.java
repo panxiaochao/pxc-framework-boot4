@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 @Getter
 @Setter
 @AllArgsConstructor
-@Schema(name = "数据返回响应类", description = "数据返回响应类")
+@Schema(description = "数据返回响应类")
 public class R<T> {
 
     /**
