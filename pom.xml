@@ -55,6 +55,7 @@
         <module>pxc-framework-boot4-util</module>
         <module>pxc-framework-boot4-web</module>
         <module>pxc-framework-boot4-holiday</module>
+        <module>pxc-framework-boot4-email</module>
     </modules>
 
     <properties>
