@@ -56,6 +56,7 @@
         <module>pxc-framework-boot4-web</module>
         <module>pxc-framework-boot4-holiday</module>
         <module>pxc-framework-boot4-email</module>
+        <module>pxc-framework-boot4-ip2region</module>
     </modules>
 
     <properties>
@@ -108,7 +109,7 @@
         <emoji-java.version>5.1.1</emoji-java.version>
         <dynamic-datasource-spring-boot4.version>4.5.0</dynamic-datasource-spring-boot4.version>
         <jasypt-spring-boot-starter.version>4.0.4</jasypt-spring-boot-starter.version>
-        <logback.version>1.5.32</logback.version>
+        <logback.version>1.5.34</logback.version>
         <java-diff-utils.version>4.16</java-diff-utils.version>
         <fastexcel.version>1.3.0</fastexcel.version>
         <!-- 插件版本 -->

@@ -111,11 +111,11 @@
                 <version>${revision}</version>
             </dependency>
             <!-- Email 模块 -->
-            <!--                <dependency>-->
-            <!--                    <groupId>io.github.panxiaochao</groupId>-->
-            <!--                    <artifactId>pxc-framework-boot4-email</artifactId>-->
-            <!--                    <version>${revision}</version>-->
-            <!--                </dependency>-->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-framework-boot4-email</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!-- Excel 模块 -->
             <!--                <dependency>-->
             <!--                    <groupId>io.github.panxiaochao</groupId>-->
@@ -129,11 +129,11 @@
                 <version>${revision}</version>
             </dependency>
             <!-- ip2region 模块 -->
-            <!--                <dependency>-->
-            <!--                    <groupId>io.github.panxiaochao</groupId>-->
-            <!--                    <artifactId>pxc-framework-boot4-ip2region</artifactId>-->
-            <!--                    <version>${revision}</version>-->
-            <!--                </dependency>-->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-framework-boot4-ip2region</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!-- 工具类 模块 -->
             <dependency>
                 <groupId>io.github.panxiaochao</groupId>

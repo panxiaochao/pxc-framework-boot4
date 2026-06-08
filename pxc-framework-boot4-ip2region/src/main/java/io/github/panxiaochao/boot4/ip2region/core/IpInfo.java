@@ -1,0 +1,153 @@
+package io.github.panxiaochao.boot4.ip2region.core;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.util.StringUtils;
+
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.regex.Pattern;
+
+/**
+ * <p>
+ * IpInfo 地址实体类
+ * </p>
+ *
+ * @author Lypxc
+ * @since 2023-07-10
+ */
+@Getter
+@Setter
+@ToString
+public class IpInfo {
+
+    private static final Pattern SPLIT_PATTERN = Pattern.compile("\\|");
+
+    private static final Pattern DOT_PATTERN = Pattern.compile("\\.");
+
+    private static final Pattern T_PATTERN = Pattern.compile("\\t");
+
+    private static final String UNKNOWN = "unknown";
+
+    /**
+     * 国家
+     */
+    private String country;
+
+    /**
+     * 省
+     */
+    private String province;
+
+    /**
+     * 城市
+     */
+    private String city;
+
+    /**
+     * 运营商
+     */
+    private String isp;
+
+    /**
+     * ip
+     */
+    private String ip;
+
+    /**
+     * 地区，例如：CN、US、JP 等
+     */
+    private String region;
+
+    /**
+     * 原生数据
+     */
+    private String rawData;
+
+    /**
+     * 拼接完整的地址
+     * @return 地址字符串，包含国家、区域、省、城市
+     */
+    public String getAddress() {
+        Set<String> rawSet = new LinkedHashSet<>();
+        rawSet.add(country);
+        rawSet.add(province);
+        rawSet.add(city);
+        rawSet.removeIf(s -> !StringUtils.hasText(s));
+        return String.join("|", rawSet);
+    }
+
+    /**
+     * 拼接完整的地址
+     * @return 地址字符串，包含国家、区域、省、城市、运营商
+     */
+    public String getAddressAndIsp() {
+        String address = getAddress();
+        if (!StringUtils.hasText(address) && !StringUtils.hasText(isp)) {
+            return UNKNOWN;
+        }
+        return address + "|" + isp;
+    }
+
+    /**
+     * 将 ip2region 搜索结果 转化为 IpInfo
+     * @param searchResult ip2region 搜索结果
+     * @return IpInfo
+     */
+    public static IpInfo toIpInfo(String searchResult) {
+        IpInfo ipInfo = new IpInfo();
+        if (!StringUtils.hasText(searchResult)) {
+            return ipInfo;
+        }
+        String[] splitInfoArr = SPLIT_PATTERN.split(searchResult);
+        // 补齐5位
+        if (splitInfoArr.length < 5) {
+            splitInfoArr = Arrays.copyOf(splitInfoArr, 5);
+        }
+        ipInfo.setCountry(filterZero(splitInfoArr[0]));
+        ipInfo.setProvince(filterZero(splitInfoArr[1]));
+        ipInfo.setCity(filterZero(splitInfoArr[2]));
+        ipInfo.setIsp(filterZero(splitInfoArr[3]));
+        ipInfo.setRegion(filterZero(splitInfoArr[4]));
+        ipInfo.setRawData(searchResult);
+        return ipInfo;
+    }
+
+    /**
+     * 数据过滤，因为 ip2Region 采用 0 填充的没有数据的字段
+     * @param info info
+     * @return info
+     */
+    private static String filterZero(String info) {
+        // null 或 0 返回 null
+        if (null == info || "0".equals(info)) {
+            return "";
+        }
+        return info;
+    }
+
+    /**
+     * 读取 IpInfo 信息
+     * @param ipInfo IpInfo 对象
+     * @param function Function 函数式接口，返回 info
+     * @return info
+     */
+    public static String readInfo(IpInfo ipInfo, Function<IpInfo, String> function) {
+        if (null == ipInfo) {
+            return null;
+        }
+        return function.apply(ipInfo);
+    }
+
+    /**
+     * 返回Ip未知的情况下，返回 “Unknown”
+     * @return 返回 Unknown
+     */
+    public static String ipUnknown() {
+        return UNKNOWN;
+    }
+
+}
