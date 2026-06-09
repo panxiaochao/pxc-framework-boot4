@@ -1,6 +1,8 @@
 package io.github.panxiaochao.boot4.utils;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import io.github.panxiaochao.boot4.utils.date.DatePattern;
 import io.github.panxiaochao.boot4.utils.jackson.CustomizeJavaTimeModule;
 import io.github.panxiaochao.boot4.utils.jackson.serializer.NullValueJacksonSerializer;
@@ -53,18 +55,10 @@ public class JacksonUtil {
             .defaultLocale(Locale.CHINA)
             // 设置默认时区为上海时区
             .defaultTimeZone(TimeZone.getTimeZone("Asia/Shanghai"))
-            // 对象的所有字段全部列入，还是其他的选项，可以忽略null等
+            // 对象的所有值全部列入，包括null值
             .changeDefaultPropertyInclusion(value -> JsonInclude.Value.ALL_ALWAYS)
-            // .changeDefaultVisibility(vc -> vc.withVisibility(PropertyAccessor.ALL,
-            // JsonAutoDetect.Visibility.NONE)
-            // .withVisibility(PropertyAccessor.GETTER,
-            // JsonAutoDetect.Visibility.PUBLIC_ONLY)
-            // .withVisibility(PropertyAccessor.IS_GETTER,
-            // JsonAutoDetect.Visibility.PUBLIC_ONLY)
-            // .withVisibility(PropertyAccessor.SETTER,
-            // JsonAutoDetect.Visibility.PUBLIC_ONLY)
-            // .withVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
-            // .withVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.ANY))
+            // 全局控制字段可见性规则，ANY表示所有字段都可见
+            .changeDefaultVisibility(value -> value.withVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY))
             // 设置 Date 类型的序列化及反序列化格式
             .defaultDateFormat(new SimpleDateFormat(DatePattern.NORMAL_DATE_TIME_PATTERN))
             // 忽略空Bean转json的错误
@@ -91,7 +85,7 @@ public class JacksonUtil {
 
     /**
      * Object to Json string.
-     * @param obj obj
+     * @param obj String
      * @return Json String
      */
     public static String toString(Object obj) {
@@ -220,6 +214,23 @@ public class JacksonUtil {
         try {
             return JSON_MAPPER.convertValue(fromValue, new TypeReference<T>() {
             });
+        }
+        catch (Exception e) {
+            LOGGER.error("JSON解析出错：{}", toString(fromValue), e);
+            return null;
+        }
+    }
+
+    /**
+     * JSON string deserialize to Object.
+     * @param fromValue object
+     * @param typeReference {@link TypeReference} of object
+     * @param <T> General type
+     * @return object
+     */
+    public static <T> T toBean(Object fromValue, TypeReference<T> typeReference) {
+        try {
+            return JSON_MAPPER.convertValue(fromValue, typeReference);
         }
         catch (Exception e) {
             LOGGER.error("JSON解析出错：{}", toString(fromValue), e);

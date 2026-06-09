@@ -54,7 +54,7 @@ public class NullValueJacksonSerializer extends ValueSerializer<Object> {
                 if (Objects.nonNull(field)) {
                     // 数字类型Integer、Double、Long等返回""
                     if (Number.class.isAssignableFrom(field.getType())) {
-                        gen.writeString(EMPTY_STRING);
+                        gen.writeNull();
                         return;
                     }
                     // String类型返回""
