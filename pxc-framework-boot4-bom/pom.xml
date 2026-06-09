@@ -147,11 +147,11 @@
                 <version>${revision}</version>
             </dependency>
             <!-- Redis 模块 -->
-            <!--                <dependency>-->
-            <!--                    <groupId>io.github.panxiaochao</groupId>-->
-            <!--                    <artifactId>pxc-framework-boot4-redis</artifactId>-->
-            <!--                    <version>${revision}</version>-->
-            <!--                </dependency>-->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-framework-boot4-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!-- 限流 模块 -->
             <!--                <dependency>-->
             <!--                    <groupId>io.github.panxiaochao</groupId>-->

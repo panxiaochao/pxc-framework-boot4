@@ -57,6 +57,7 @@
         <module>pxc-framework-boot4-holiday</module>
         <module>pxc-framework-boot4-email</module>
         <module>pxc-framework-boot4-ip2region</module>
+        <module>pxc-framework-boot4-redis</module>
     </modules>
 
     <properties>
@@ -97,8 +98,8 @@
         <lombok.version>1.18.46</lombok.version>
         <mysql-connector-j.version>9.7.0</mysql-connector-j.version>
         <freemarker.version>2.3.34</freemarker.version>
-        <redisson.version>4.4.0</redisson.version>
-        <redisson-spring-boot-starter.version>4.4.0</redisson-spring-boot-starter.version>
+        <redisson.version>4.5.0</redisson.version>
+        <redisson-spring-boot-starter.version>4.5.0</redisson-spring-boot-starter.version>
         <jakarta.mail-api.version>2.1.5</jakarta.mail-api.version>
         <hikariCP.version>7.0.2</hikariCP.version>
         <slf4j-api.version>2.0.18</slf4j-api.version>
