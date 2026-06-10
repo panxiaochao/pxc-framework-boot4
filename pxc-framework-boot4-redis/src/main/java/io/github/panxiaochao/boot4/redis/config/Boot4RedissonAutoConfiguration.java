@@ -83,6 +83,7 @@ public class Boot4RedissonAutoConfiguration {
     private Codec buildCodec() {
         JsonMapper.Builder builder = objectMapper();
         if (redissonProperties.isClassCodecEnable()) {
+            // DefaultTyping.NON_FINAL 针对非 final 类型的数据会添加 @class 字段，比如：Date、List、Map 等
             builder.activateDefaultTyping(
                     BasicPolymorphicTypeValidator.builder().allowIfSubType((ctxt, clazz) -> true).build(),
                     DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);

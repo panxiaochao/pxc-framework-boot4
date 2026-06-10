@@ -1,6 +1,7 @@
 package io.github.panxiaochao.boot4.redis.utils;
 
 import io.github.panxiaochao.boot4.utils.CollectionUtil;
+import io.github.panxiaochao.boot4.utils.JacksonUtil;
 import io.github.panxiaochao.boot4.utils.SpringContextUtil;
 import io.github.panxiaochao.boot4.utils.StrUtil;
 import io.github.panxiaochao.boot4.utils.StringPools;
@@ -12,6 +13,7 @@ import org.redisson.api.geo.GeoSearchArgs;
 import org.redisson.api.geo.GeoUnit;
 import org.redisson.api.options.KeysScanOptions;
 import org.redisson.client.codec.Codec;
+import org.redisson.codec.TypedJsonJackson3Codec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,6 +55,16 @@ public class RedissonUtil {
      */
     public static RedissonClient ofRedissonClient() {
         return REDISSON_CLIENT;
+    }
+
+    /**
+     * 创建 TypedJsonJackson3Codec 编码器，无 @class 存储.
+     * @param clazz 序列化/反序列化的目标类型
+     * @param <T> 泛型类型
+     * @return TypedJsonJackson3Codec
+     */
+    public static <T> TypedJsonJackson3Codec createTypedCodec(Class<T> clazz) {
+        return new TypedJsonJackson3Codec(clazz, JacksonUtil.jsonMapper());
     }
 
     /**
@@ -163,6 +175,17 @@ public class RedissonUtil {
     }
 
     /**
+     * 设置值，使用 TypedJsonJackson3Codec 无 @class 存储模式.
+     * @param key 缓存的键值
+     * @param value 缓存的值
+     * @param clazz 序列化目标类型
+     * @param <T> 泛型
+     */
+    public static <T> void set(String key, T value, Class<T> clazz) {
+        set(key, value, Duration.ofMillis(-1), clazz);
+    }
+
+    /**
      * 获得key剩余存活时间
      * @param key 缓存键值
      * @return 剩余存活时间
@@ -211,12 +234,35 @@ public class RedissonUtil {
     }
 
     /**
+     * 获取值，使用 TypedJsonJackson3Codec 无 @class 存储模式.
+     * @param key key
+     * @param clazz 反序列化目标类型
+     * @param <T> 泛型
+     * @return value
+     */
+    public static <T> T get(String key, Class<T> clazz) {
+        RBucket<T> rBucket = getRBucket(key, createTypedCodec(clazz));
+        return rBucket.get();
+    }
+
+    /**
      * 获取值通过批量keys
      * @param keys keys
      * @return value
      */
     public static <T> Map<String, T> get(String... keys) {
         RBuckets rBuckets = getRBuckets();
+        return rBuckets.get(keys);
+    }
+
+    /**
+     * 获取值通过批量keys，使用 TypedJsonJackson3Codec 无 @class 存储模式.
+     * @param clazz 反序列化目标类型
+     * @param keys keys
+     * @return value
+     */
+    public static <T> Map<String, T> get(Class<T> clazz, String... keys) {
+        RBuckets rBuckets = getRBuckets(createTypedCodec(clazz));
         return rBuckets.get(keys);
     }
 
@@ -248,14 +294,38 @@ public class RedissonUtil {
      * @param duration 过期时间
      */
     public static <T> void set(String key, T value, Duration duration) {
+        set(key, value, duration, null);
+    }
+
+    /**
+     * 设置值，使用 TypedJsonJackson3Codec 无 @class 存储模式.
+     * @param key 缓存的键值
+     * @param value 缓存的值
+     * @param duration 过期时间
+     */
+    public static <T> void set(String key, T value, Duration duration, Class<T> clazz) {
+        Codec codec = createTypedCodec(clazz);
         if (duration.toMillis() <= 0) {
-            getRBucket(key).set(value);
+            RBucket<T> bucket;
+            if (clazz == null) {
+                bucket = getRBucket(key);
+            }
+            else {
+                bucket = getRBucket(key, codec);
+            }
+            bucket.set(value);
         }
         else {
             RBatch batch = ofRBatch();
-            RBucketAsync<T> bucket = batch.getBucket(key);
-            bucket.setAsync(value);
-            bucket.expireAsync(duration);
+            RBucketAsync<T> bucketAsync;
+            if (clazz == null) {
+                bucketAsync = batch.getBucket(key);
+            }
+            else {
+                bucketAsync = batch.getBucket(key, codec);
+            }
+            bucketAsync.setAsync(value);
+            bucketAsync.expireAsync(duration);
             batch.execute();
         }
     }
@@ -329,6 +399,17 @@ public class RedissonUtil {
      */
     private static <T> RBucket<T> getRBucket(String name) {
         return ofRedissonClient().getBucket(name);
+    }
+
+    /**
+     * Returns object holder instance by name using provided codec for object.
+     * @param <T> type of value
+     * @param name name of object
+     * @param codec codec for values
+     * @return Bucket object
+     */
+    private static <T> RBucket<T> getRBucket(String name, Codec codec) {
+        return ofRedissonClient().getBucket(name, codec);
     }
 
     /**
