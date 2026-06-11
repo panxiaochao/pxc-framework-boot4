@@ -46,6 +46,9 @@ mvn clean package -P release
 | `pxc-framework-boot4-util` | 工具类模块（HTTP/IP/日期/正则等） |
 | `pxc-framework-boot4-web` | Web 模块：Filter（XSS/CORS/Encoding）、异常处理、Mvc配置 |
 | `pxc-framework-boot4-holiday` | 节假日相关模块（select/tree） |
+| `pxc-framework-boot4-email` | 邮件发送模块（基于 Spring Boot Mail + Hutool） |
+| `pxc-framework-boot4-ip2region` | IP 地址转地理位置模块 |
+| `pxc-framework-boot4-redis` | Redis 模块（统一采用 Redisson） |
 
 ### 核心模块详情
 
@@ -76,10 +79,10 @@ mvn clean package -P release
 | 组件 | 版本 |
 |------|------|
 | Java | 21 |
-| Spring Boot | 4.0.6 |
-| Spring | 7.0.7 |
+| Spring Boot | 4.0.7 |
+| Spring | 7.0.8 |
 | Spring Cloud | 2025.1.1 |
-| Jackson | 3.1.4 |
+| Jackson | 3.2.0 |
 | Hutool | 5.8.46 |
-| Redisson | 4.4.0 |
+| Redisson | 4.5.0 |
 | Mybatis-plus | 3.5.16 |
