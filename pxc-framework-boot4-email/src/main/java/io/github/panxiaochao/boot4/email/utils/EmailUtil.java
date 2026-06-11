@@ -1,6 +1,6 @@
 package io.github.panxiaochao.boot4.email.utils;
 
-import cn.hutool.extra.mail.Mail;
+import cn.hutool.extra.mail.JakartaMail;
 import cn.hutool.extra.mail.MailAccount;
 import io.github.panxiaochao.boot4.utils.CharPools;
 import io.github.panxiaochao.boot4.utils.MapUtil;
@@ -386,7 +386,7 @@ public class EmailUtil {
     private static String send(MailAccount mailAccount, boolean useGlobalSession, Collection<String> tos,
             Collection<String> ccs, Collection<String> bccs, String subject, String content,
             Map<String, InputStream> imageMap, boolean isHtml, File... files) {
-        final Mail mail = Mail.create(mailAccount).setUseGlobalSession(useGlobalSession);
+        final JakartaMail mail = JakartaMail.create(mailAccount).setUseGlobalSession(useGlobalSession);
 
         // 可选抄送人
         if (!CollectionUtils.isEmpty(ccs)) {
