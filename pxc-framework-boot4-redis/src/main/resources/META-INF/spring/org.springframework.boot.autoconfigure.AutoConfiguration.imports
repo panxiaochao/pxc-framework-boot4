@@ -1,1 +1,3 @@
 io.github.panxiaochao.boot4.redis.config.Boot4RedissonAutoConfiguration
+io.github.panxiaochao.boot4.redis.config.RateLimiterAutoConfiguration
+io.github.panxiaochao.boot4.redis.config.RepeatSubmitLimiterAutoConfiguration
