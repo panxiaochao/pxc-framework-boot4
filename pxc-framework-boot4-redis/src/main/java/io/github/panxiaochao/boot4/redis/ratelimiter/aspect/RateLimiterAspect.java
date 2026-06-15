@@ -168,29 +168,20 @@ public class RateLimiterAspect {
         }
 
         switch (rateLimiter.rateLimiterType()) {
-            case IP:
-                stringBuilder.append(IpUtil.ofRequestIp());
-                break;
-            case METHOD:
+            case IP -> stringBuilder.append(IpUtil.ofRequestIp());
+            case METHOD ->
                 stringBuilder.append(DigestUtils.md5DigestAsHex(classMethodName.getBytes(StandardCharsets.UTF_8)));
-                break;
-            case IP_METHOD:
-                stringBuilder.append(IpUtil.ofRequestIp())
-                    .append(":")
-                    .append(DigestUtils.md5DigestAsHex(classMethodName.getBytes(StandardCharsets.UTF_8)));
-                break;
-            case SINGLE:
-                stringBuilder.append(RedissonUtil.getRedissonId());
-                break;
-            default:
+            case IP_METHOD -> stringBuilder.append(IpUtil.ofRequestIp())
+                .append(":")
+                .append(DigestUtils.md5DigestAsHex(classMethodName.getBytes(StandardCharsets.UTF_8)));
+            case SINGLE -> stringBuilder.append(RedissonUtil.getRedissonId());
+            default -> {
                 // 默认使用全局限流
-                break;
+            }
         }
         String finalKey = stringBuilder.toString();
-        if (finalKey.length() > MAX_RATE_LIMITER_KEY_LENGTH) {
-            return RATE_LIMITER_KEY + DigestUtils.md5DigestAsHex(finalKey.getBytes(StandardCharsets.UTF_8));
-        }
-        return finalKey;
+        return finalKey.length() > MAX_RATE_LIMITER_KEY_LENGTH
+                ? RATE_LIMITER_KEY + DigestUtils.md5DigestAsHex(finalKey.getBytes(StandardCharsets.UTF_8)) : finalKey;
     }
 
     /**
