@@ -58,6 +58,7 @@
         <module>pxc-framework-boot4-email</module>
         <module>pxc-framework-boot4-ip2region</module>
         <module>pxc-framework-boot4-redis</module>
+        <module>pxc-framework-boot4-mybatis-plus</module>
     </modules>
 
     <properties>
@@ -68,7 +69,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- 2025.1.X 版本支持 4.0.x -->
-        <spring-boot.version>4.0.7</spring-boot.version>
+        <spring-boot.version>4.1.0</spring-boot.version>
         <spring-data-redis.version>4.0.5</spring-data-redis.version>
         <spring-cloud.version>2025.1.1</spring-cloud.version>
         <spring-cloud-openfeign.version>5.0.1</spring-cloud-openfeign.version>
@@ -215,6 +216,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jdbc</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
