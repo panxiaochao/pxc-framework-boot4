@@ -152,18 +152,6 @@
                 <artifactId>pxc-framework-boot4-redis</artifactId>
                 <version>${revision}</version>
             </dependency>
-            <!-- 限流 模块 -->
-            <!--                <dependency>-->
-            <!--                    <groupId>io.github.panxiaochao</groupId>-->
-            <!--                    <artifactId>pxc-framework-boot4-ratelimiter</artifactId>-->
-            <!--                    <version>${revision}</version>-->
-            <!--                </dependency>-->
-            <!-- 幂等重复提交 模块 -->
-            <!--                <dependency>-->
-            <!--                    <groupId>io.github.panxiaochao</groupId>-->
-            <!--                    <artifactId>pxc-framework-boot4-repeatsubmit</artifactId>-->
-            <!--                    <version>${revision}</version>-->
-            <!--                </dependency>-->
             <!-- 脱敏加密 模块 -->
             <!--                <dependency>-->
             <!--                    <groupId>io.github.panxiaochao</groupId>-->
@@ -183,21 +171,15 @@
             <!--                    <version>${revision}</version>-->
             <!--                </dependency>-->
             <!-- ORM 模块 -->
-            <!--                <dependency>-->
-            <!--                    <groupId>io.github.panxiaochao</groupId>-->
-            <!--                    <artifactId>pxc-framework-boot4-mybatis-plus</artifactId>-->
-            <!--                    <version>${revision}</version>-->
-            <!--                </dependency>-->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-framework-boot4-mybatis-plus</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!-- 代码构建 模块 -->
             <!--                <dependency>-->
             <!--                    <groupId>io.github.panxiaochao</groupId>-->
             <!--                    <artifactId>pxc-framework-boot4-mybatis-plus-generator</artifactId>-->
-            <!--                    <version>${revision}</version>-->
-            <!--                </dependency>-->
-            <!-- wei-xin 模块 -->
-            <!--                <dependency>-->
-            <!--                    <groupId>io.github.panxiaochao</groupId>-->
-            <!--                    <artifactId>pxc-framework-boot4-weixin</artifactId>-->
             <!--                    <version>${revision}</version>-->
             <!--                </dependency>-->
             <!-- Mvc Web 模块 -->
