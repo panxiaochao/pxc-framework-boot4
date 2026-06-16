@@ -3,6 +3,8 @@ package io.github.panxiaochao.boot4.mybatisplus.handler;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import io.github.panxiaochao.boot4.utils.ObjectUtil;
 import org.apache.ibatis.reflection.MetaObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
@@ -23,6 +25,11 @@ import java.util.Objects;
  * @since 2023-07-17
  */
 public class MetaObjectHandlerCustomizer implements MetaObjectHandler {
+
+    /**
+     * LOGGER MetaObjectHandlerCustomizer.class
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(MetaObjectHandlerCustomizer.class);
 
     /**
      * 创建需要填充的字段名列表
@@ -74,6 +81,7 @@ public class MetaObjectHandlerCustomizer implements MetaObjectHandler {
      * @param metaObjectHandler 自定义元对象处理器实例
      */
     public MetaObjectHandlerCustomizer(IMetaObjectHandler metaObjectHandler) {
+        LOGGER.info("配置[Mybatis Plus -> MetaObjectHandler自动填充配置]成功！");
         this.metaObjectHandler = metaObjectHandler;
     }
 

@@ -14,7 +14,6 @@ import io.github.panxiaochao.boot4.mybatisplus.config.properties.MpProperties;
 import io.github.panxiaochao.boot4.mybatisplus.handler.IMetaObjectHandler;
 import io.github.panxiaochao.boot4.mybatisplus.handler.MetaObjectHandlerCustomizer;
 import io.github.panxiaochao.boot4.mybatisplus.interceptor.SqlLogInterceptor;
-import io.github.panxiaochao.boot4.utils.BooleanUtil;
 import io.github.panxiaochao.boot4.utils.IpUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.executor.Executor;
@@ -33,13 +32,6 @@ import org.springframework.core.Ordered;
 /**
  * <p>
  * MyBatis plus 自动配置类
- * </p>
- *
- * <p>
- * 理论上, mybatisPlus 连表插件(MPJBaseMapper) 与自定义SQL注入器(MySqlInjector, OracleInjector) 不应该冲突,
- * 但是在实际使用中, 发现 MPJBaseMapper 会覆盖自定义SQL注入器的方法, 导致自定义SQL注入器失效. 参考
- * <a href="https://blog.csdn.net/ygxyvip/article/details/120524157">论mybatisPlus
- * 连表插件(MPJBaseMapper) 与自定义SQL注入器冲突</a>
  * </p>
  *
  * @author Lypxc
@@ -116,7 +108,7 @@ public class MybatisPlusCustomizerAutoConfiguration {
     @Bean
     public ConfigurationCustomizer configurationCustomizer() {
         return configuration -> {
-            if (BooleanUtil.isTrue(BooleanUtil.toBoolean(mpProperties.getSqlLogTrace()))) {
+            if (mpProperties.isSqlLogTrace()) {
                 // 添加sql日志拦截器
                 configuration.addInterceptor(new SqlLogInterceptor());
             }
@@ -128,6 +120,7 @@ public class MybatisPlusCustomizerAutoConfiguration {
      * @return MetaObjectHandler
      */
     @Bean
+    @ConditionalOnMissingBean(MetaObjectHandler.class)
     public MetaObjectHandler metaObjectHandler(IMetaObjectHandler metaObjectHandler) {
         return new MetaObjectHandlerCustomizer(metaObjectHandler);
     }
@@ -137,8 +130,8 @@ public class MybatisPlusCustomizerAutoConfiguration {
      */
     @Bean
     public IdentifierGenerator idGenerator() {
-        long workerId = IpUtil.ipv4ToLong(IpUtil.getLocalhostStr()) & 31;
-        long dataCenterId = workerId > 30 ? 0 : workerId + 1;
+        long workerId = IpUtil.ipv4ToLong(IpUtil.getLocalhostStr()) % 32;
+        long dataCenterId = (workerId + 1) % 32;
         return new DefaultIdentifierGenerator(workerId, dataCenterId);
     }
 
