@@ -72,7 +72,7 @@ mvn clean package -P release
 - `license-maven-plugin` 管理 Apache 2.0 许可证头（year: 2026-2027）
 - 所有 Java 文件使用 Lombok（`@Data` 等注解）
 - 遵循 Spring Boot 3.x + Jakarta EE 命名规范（jakarta.* 命名空间）
-- Parent POM 版本号管理：`${revision}` = 4.0.0-SNAPSHOT
+- Parent POM 版本号管理：`${revision}` = 4.0.0
 
 ### 关键依赖版本
 
