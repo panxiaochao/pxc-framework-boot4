@@ -1,0 +1,4 @@
+{
+  "include": ["src/**/*.{java}"],
+  "exclude": ["**/*.{yaml,yml,xml,md,json,config,vm,svg,txt,map,imports}","**/test/**",".gitignore",".gitattributes","LICENSE",".springjavaformatconfig "]
+}

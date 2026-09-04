@@ -25,7 +25,6 @@ import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.session.Configuration;
@@ -56,8 +55,6 @@ import java.util.regex.Matcher;
  * @version 1.0
  */
 @Intercepts({
-        @Signature(type = Executor.class, method = "query",
-                args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }),
         @Signature(type = Executor.class, method = "query",
                 args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class,
                         BoundSql.class }),
@@ -143,6 +140,12 @@ public class SqlLogInterceptor implements Interceptor {
 
     private static String getParameterValue(Object object) {
         String value = "";
+        if (object == null) {
+            return "null";
+        }
+        if (object instanceof Number || object instanceof Boolean) {
+            return object.toString();
+        }
         if (object instanceof String) {
             value = "'" + object + "'";
         }
@@ -156,15 +159,13 @@ public class SqlLogInterceptor implements Interceptor {
         else if (object instanceof LocalDateTime) {
             value = "'" + LocalDateTimeUtil.localDateTimeToString((LocalDateTime) object) + "'";
         }
+        else if (object instanceof Enum<?> enumValue) {
+            value = "'" + enumValue.name() + "'";
+        }
         else if (!ObjectUtil.isEmpty(object)) {
             value = object.toString();
         }
         return value;
-    }
-
-    @Override
-    public Object plugin(Object target) {
-        return Plugin.wrap(target, this);
     }
 
     @Override
