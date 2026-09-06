@@ -4,6 +4,8 @@ import io.github.panxiaochao.boot4.crypto.encrypt.AesBytesEncryptor;
 import io.github.panxiaochao.boot4.crypto.utils.Base64Util;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * <p>
  * </p>
@@ -22,6 +24,7 @@ public class AESUtilTest {
         System.out.println("加密：" + Base64Util.encodeToString(encrypt1));
         byte[] decrypt1 = aesBytesEncryptor.decrypt(encrypt1);
         System.out.println("解密：" + new String(decrypt1));
+        assertEquals("你好", new String(decrypt1));
     }
 
 }

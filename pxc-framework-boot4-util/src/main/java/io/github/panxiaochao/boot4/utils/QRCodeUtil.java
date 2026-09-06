@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -643,7 +644,7 @@ public class QRCodeUtil {
      */
     public static byte[] readRawBytes(String qrCodeFile) {
         try {
-            BufferedImage bufferedImage = isHttpUrl(qrCodeFile) ? ImageIO.read(new URL(qrCodeFile))
+            BufferedImage bufferedImage = isHttpUrl(qrCodeFile) ? ImageIO.read(URI.create(qrCodeFile).toURL())
                     : ImageIO.read(new File(qrCodeFile));
             return readRawBytes(bufferedImage);
         }

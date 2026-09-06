@@ -15,6 +15,8 @@
  */
 package io.github.panxiaochao.boot4.crypto.keygen;
 
+import java.util.Arrays;
+
 /**
  * <p>
  * 密钥生成器，每次只返回相同的密钥.
@@ -46,7 +48,7 @@ public class SharedKeyGenerator implements BytesKeyGenerator {
      */
     @Override
     public byte[] generateKey() {
-        return this.sharedKey;
+        return Arrays.copyOf(this.sharedKey, this.sharedKey.length);
     }
 
 }
