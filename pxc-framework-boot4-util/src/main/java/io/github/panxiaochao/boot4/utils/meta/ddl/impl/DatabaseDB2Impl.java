@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * <p>
- * 达梦 数据库实现类
+ * DB2 数据库实现类
  * </p>
  *
  * @author lypxc
@@ -40,29 +40,29 @@ public class DatabaseDB2Impl implements IDatabase {
 
     @Override
     public String getTableDdl(Connection connection, String schemaName, String tableName) {
-        return "";
+        throw new UnsupportedOperationException("DB2 的 DDL 生成暂未实现");
     }
 
     @Override
     public String getViewDdl(Connection connection, String schemaName, String tableName) {
-        return "";
+        throw new UnsupportedOperationException("DB2 的 DDL 生成暂未实现");
     }
 
     @Override
     public String generateCreateTableSql(String schemaName, String tableName, String tableComment,
             List<ColumnMeta> columnMetas) {
-        return "";
+        throw new UnsupportedOperationException("DB2 的 DDL 生成暂未实现");
     }
 
     @Override
     public String getQuotedSchemaTableCombination(String schemaName, String tableName) {
-        return "";
+        throw new UnsupportedOperationException("DB2 的 DDL 生成暂未实现");
     }
 
     @Override
     public List<String> getTableColumnCommentDefinition(String schemaName, String tableName, String tableComment,
             List<ColumnMeta> columnMetas) {
-        return List.of();
+        throw new UnsupportedOperationException("DB2 的 DDL 生成暂未实现");
     }
 
 }
