@@ -17,7 +17,6 @@ package io.github.panxiaochao.boot4.redis.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import io.github.panxiaochao.boot4.redis.config.properties.Boot4RedissonProperties;
 import io.github.panxiaochao.boot4.redis.mapper.KeyPrefixNameMapper;
@@ -28,7 +27,6 @@ import lombok.RequiredArgsConstructor;
 import org.redisson.client.codec.Codec;
 import org.redisson.client.codec.StringCodec;
 import org.redisson.codec.CompositeCodec;
-import org.redisson.codec.JsonJackson3Codec;
 import org.redisson.codec.TypedJsonJackson3Codec;
 import org.redisson.spring.starter.RedissonAutoConfigurationCustomizer;
 import org.slf4j.Logger;
@@ -41,11 +39,9 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JacksonJsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import tools.jackson.databind.DefaultTyping;
 import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.json.JsonMapper;
-import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import tools.jackson.databind.ser.BeanSerializerFactory;
 
 import java.text.SimpleDateFormat;
@@ -97,18 +93,9 @@ public class Boot4RedissonAutoConfiguration {
      */
     private Codec buildCodec() {
         JsonMapper.Builder builder = objectMapper();
-        if (redissonProperties.isClassCodecEnable()) {
-            // DefaultTyping.NON_FINAL 针对非 final 类型的数据会添加 @class 字段，比如：Date、List、Map 等
-            builder.activateDefaultTyping(
-                    BasicPolymorphicTypeValidator.builder().allowIfSubType((ctxt, clazz) -> true).build(),
-                    DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
-            return new JsonJackson3Codec(builder.build());
-        }
-        else {
-            // 自定义 NULL 值处理，不适合序列化 @class 方式，[]通过不了序列化
-            builder.serializerFactory(
-                    BeanSerializerFactory.instance.withNullValueSerializer(NullValueJacksonSerializer.INSTANCE));
-        }
+        // 自定义 NULL 值处理，不适合序列化 @class 方式，[]通过不了序列化
+        builder.serializerFactory(
+                BeanSerializerFactory.instance.withNullValueSerializer(NullValueJacksonSerializer.INSTANCE));
         return new TypedJsonJackson3Codec(Object.class, builder.build());
     }
 
@@ -157,7 +144,7 @@ public class Boot4RedissonAutoConfiguration {
             .addModule(new CustomizeJavaTimeModule())
             // 开启严格模式，用于在反序列化 JSON 时，默认true
             // 若解析完目标对象后输入流中仍有额外字符（如多余逗号、括号、文本等），则抛出JsonParseException
-            .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+            .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS);
         // 校验对象：子类型（即 JSON 中 @class 指定的实际类型）
         // 含义：对所有子类型都放行，不做任何限制
         // 效果：反序列化时，无论 JSON 中声明的实际类型是什么，都会被接受
@@ -172,7 +159,6 @@ public class Boot4RedissonAutoConfiguration {
         // BasicPolymorphicTypeValidator.builder().allowIfSubType((ctxt, clazz) ->
         // true).build(),
         // DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY)
-        ;
     }
 
 }

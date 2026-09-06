@@ -38,11 +38,6 @@ public class Boot4RedissonProperties {
     private String keyPrefix;
 
     /**
-     * 是否开启类编码器，序列化时是否包含类信息：“@class”, 默认关闭
-     */
-    private boolean classCodecEnable = false;
-
-    /**
      * 线程池数量, 默认16
      */
     private int threads = 16;

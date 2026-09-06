@@ -642,7 +642,14 @@ public class QRCodeUtil {
      * @return QRCodeUtil 中的内容
      */
     public static byte[] readRawBytes(String qrCodeFile) {
-        return readRawBytes(read(qrCodeFile));
+        try {
+            BufferedImage bufferedImage = isHttpUrl(qrCodeFile) ? ImageIO.read(new URL(qrCodeFile))
+                    : ImageIO.read(new File(qrCodeFile));
+            return readRawBytes(bufferedImage);
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -651,7 +658,12 @@ public class QRCodeUtil {
      * @return QRCodeUtil 中的内容
      */
     public static byte[] readRawBytes(File qrCodeFile) {
-        return readRawBytes(read(qrCodeFile));
+        try {
+            return readRawBytes(ImageIO.read(qrCodeFile));
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -660,7 +672,12 @@ public class QRCodeUtil {
      * @return QRCodeUtil 中的内容
      */
     public static byte[] readRawBytes(URL qrCodeUrl) {
-        return readRawBytes(read(qrCodeUrl));
+        try {
+            return readRawBytes(ImageIO.read(qrCodeUrl));
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
