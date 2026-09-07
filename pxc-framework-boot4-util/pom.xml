@@ -111,6 +111,11 @@
             <artifactId>json</artifactId>
             <version>20250517</version>
         </dependency>
+        <!-- hutool-extra -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-extra</artifactId>
+        </dependency>
         <!-- 测试 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

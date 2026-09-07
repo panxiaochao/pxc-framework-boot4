@@ -15,6 +15,8 @@
  */
 package io.github.panxiaochao.boot4.mybatisplus.config;
 
+import cn.hutool.core.net.Ipv4Util;
+import cn.hutool.core.net.NetUtil;
 import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
@@ -29,7 +31,6 @@ import io.github.panxiaochao.boot4.mybatisplus.config.properties.MpProperties;
 import io.github.panxiaochao.boot4.mybatisplus.handler.IMetaObjectHandler;
 import io.github.panxiaochao.boot4.mybatisplus.handler.MetaObjectHandlerCustomizer;
 import io.github.panxiaochao.boot4.mybatisplus.interceptor.SqlLogInterceptor;
-import io.github.panxiaochao.boot4.utils.IpUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
@@ -145,8 +146,11 @@ public class MybatisPlusCustomizerAutoConfiguration {
      */
     @Bean
     public IdentifierGenerator idGenerator() {
-        long workerId = IpUtil.ipv4ToLong(IpUtil.getLocalhostStr()) % 32;
-        long dataCenterId = (workerId + 1) % 32;
+        long macHash = NetUtil.getLocalMacAddress().hashCode();
+        long ipNum = Ipv4Util.ipv4ToLong(NetUtil.getLocalhostStr());
+        long combined = (macHash ^ ipNum ^ ((ipNum >>> 16) & 0xFFFF)) & 0x3FF;
+        long dataCenterId = (combined >>> 5) & 0x1F;
+        long workerId = combined & 0x1F;
         return new DefaultIdentifierGenerator(workerId, dataCenterId);
     }
 

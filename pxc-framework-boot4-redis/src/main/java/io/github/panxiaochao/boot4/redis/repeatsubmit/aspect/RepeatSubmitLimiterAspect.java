@@ -49,7 +49,6 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -77,11 +76,12 @@ public class RepeatSubmitLimiterAspect {
 
     @Before("@annotation(repeatSubmitLimiter)")
     public void before(JoinPoint joinPoint, RepeatSubmitLimiter repeatSubmitLimiter) {
-        long interval = repeatSubmitLimiter.interval();
-        TimeUnit timeUnit = repeatSubmitLimiter.timeUnit();
-        if (timeUnit.toMillis(interval) < 1000) {
+        long interval = repeatSubmitLimiter.timeUnit().toMillis(repeatSubmitLimiter.interval());
+
+        if (interval < 1000) {
             throw new FrameworkRuntimeException(RepeatSubmitLimiterErrorEnum.REPEAT_SUBMIT_LIMITER_TIME_ERROR);
         }
+
         // 获取限重复提交KEY
         String repeatSubmitLimiterKey = getRepeatSubmitLimiterKey(joinPoint, repeatSubmitLimiter);
         if (RedissonUtil.setIfAbsent(repeatSubmitLimiterKey, "", Duration.ofMillis(interval))) {
@@ -124,8 +124,12 @@ public class RepeatSubmitLimiterAspect {
      */
     @AfterThrowing(pointcut = "@annotation(repeatSubmitLimiter)", throwing = "ex")
     public void afterThrowing(JoinPoint joinPoint, RepeatSubmitLimiter repeatSubmitLimiter, Exception ex) {
-        RedissonUtil.delete(CACHE_KEY_SET.get());
-        CACHE_KEY_SET.remove();
+        try {
+            RedissonUtil.delete(CACHE_KEY_SET.get());
+        }
+        finally {
+            CACHE_KEY_SET.remove();
+        }
     }
 
     private String getRepeatSubmitLimiterKey(JoinPoint joinPoint, RepeatSubmitLimiter repeatSubmitLimiter) {

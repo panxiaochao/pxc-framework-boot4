@@ -15,6 +15,9 @@
  */
 package io.github.panxiaochao.boot4.utils;
 
+import cn.hutool.core.net.Ipv4Util;
+import cn.hutool.core.net.NetUtil;
+
 import java.io.Serializable;
 
 /**
@@ -104,12 +107,12 @@ public class SnowFlakeUtil implements Serializable {
     /**
      * 工作机器ID(0~31)
      */
-    private long workerId;
+    private final long workerId;
 
     /**
      * 数据中心ID(0~31)
      */
-    private long dataCenterId;
+    private final long dataCenterId;
 
     /**
      * 毫秒内序列(0~4095)
@@ -130,8 +133,11 @@ public class SnowFlakeUtil implements Serializable {
      * 不能私有构造
      */
     private SnowFlakeUtil() {
-        this.workerId = IpUtil.ipv4ToLong(IpUtil.getLocalhostStr()) & 31;
-        this.dataCenterId = workerId > 30 ? 0 : workerId + 1;
+        long macHash = NetUtil.getLocalMacAddress().hashCode();
+        long ipNum = Ipv4Util.ipv4ToLong(NetUtil.getLocalhostStr());
+        long combined = (macHash ^ ipNum ^ ((ipNum >>> 16) & 0xFFFF)) & 0x3FF;
+        this.dataCenterId = (combined >>> 5) & 0x1F;
+        this.workerId = combined & 0x1F;
     }
 
     /**

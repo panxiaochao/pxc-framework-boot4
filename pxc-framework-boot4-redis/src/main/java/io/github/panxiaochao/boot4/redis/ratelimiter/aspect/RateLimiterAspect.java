@@ -15,11 +15,12 @@
  */
 package io.github.panxiaochao.boot4.redis.ratelimiter.aspect;
 
+import cn.hutool.extra.servlet.JakartaServletUtil;
 import io.github.panxiaochao.boot4.common.enums.IEnum;
 import io.github.panxiaochao.boot4.common.exception.FrameworkRuntimeException;
 import io.github.panxiaochao.boot4.redis.ratelimiter.annotation.RateLimiter;
 import io.github.panxiaochao.boot4.redis.utils.RedissonUtil;
-import io.github.panxiaochao.boot4.utils.IpUtil;
+import io.github.panxiaochao.boot4.utils.RequestUtil;
 import io.github.panxiaochao.boot4.utils.StrUtil;
 import io.github.panxiaochao.boot4.utils.StringPools;
 import lombok.AllArgsConstructor;
@@ -44,6 +45,7 @@ import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -182,13 +184,16 @@ public class RateLimiterAspect {
             stringBuilder.append(key);
         }
 
+        // 获取IP
+        String ip = JakartaServletUtil.getClientIP(Objects.requireNonNull(RequestUtil.getRequest()));
+
+        // 对类名进行MD5加密
+        String classMethodMd5 = DigestUtils.md5DigestAsHex(classMethodName.getBytes(StandardCharsets.UTF_8));
+
         switch (rateLimiter.rateLimiterType()) {
-            case IP -> stringBuilder.append(IpUtil.ofRequestIp());
-            case METHOD ->
-                stringBuilder.append(DigestUtils.md5DigestAsHex(classMethodName.getBytes(StandardCharsets.UTF_8)));
-            case IP_METHOD -> stringBuilder.append(IpUtil.ofRequestIp())
-                .append(":")
-                .append(DigestUtils.md5DigestAsHex(classMethodName.getBytes(StandardCharsets.UTF_8)));
+            case IP -> stringBuilder.append(ip);
+            case METHOD -> stringBuilder.append(classMethodMd5);
+            case IP_METHOD -> stringBuilder.append(ip).append(":").append(classMethodMd5);
             case SINGLE -> stringBuilder.append(RedissonUtil.getRedissonId());
             default -> {
                 // 默认使用全局限流
